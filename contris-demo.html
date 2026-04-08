@@ -1,0 +1,3582 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contris - Acces Early Adopter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --panel: #171c28;
+  --panel-2: #1f2636;
+  --line: #2a3447;
+  --text: #e9edf5;
+  --muted: #9aa6bd;
+  --primary: #4355f5;
+  --primary-2: #3344e8;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Geist", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+section { padding: 88px 0; }
+h1, h2, h3 {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+h1, h2 { font-family: "Instrument Serif", Georgia, serif; }
+p { color: var(--muted); }
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 22px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.btn:hover { background: var(--primary-2); transform: translateY(-1px); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(67,85,245,.4);
+  background: rgba(67,85,245,.12);
+  color: #c4cbff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+#hero { padding-top: 110px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.hero-copy h1 {
+  font-size: clamp(38px, 5vw, 66px);
+  margin-bottom: 18px;
+}
+.hero-copy p {
+  font-size: 18px;
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+
+.video-thumb {
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #1f2636, #111826);
+  min-height: 300px;
+  overflow: hidden;
+}
+.video-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.5)),
+    url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80") center/cover;
+}
+.play-button {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.play-circle {
+  width: 88px;
+  height: 88px;
+  border-radius: 999px;
+  background: rgba(67,85,245,.95);
+  border: 2px solid rgba(255,255,255,.35);
+  box-shadow: 0 0 0 14px rgba(67,85,245,.18);
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+}
+
+.section-title {
+  font-size: clamp(30px, 4vw, 48px);
+  margin-bottom: 14px;
+}
+.section-sub {
+  margin-bottom: 30px;
+  max-width: 760px;
+}
+
+.pain-grid,
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.pain-card,
+.benefit-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.pain-card h3,
+.benefit-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+
+.i-danger { background: rgba(239,68,68,.13); color: var(--danger); }
+.i-warn { background: rgba(245,158,11,.13); color: var(--warn); }
+.i-primary { background: rgba(67,85,245,.13); color: #94a0ff; }
+
+#demo .player-wrap {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0d1018;
+}
+
+.player-wrap iframe {
+  width: 100%;
+  height: min(62vw, 640px);
+  border: 0;
+  display: block;
+}
+
+#trust .trust-box {
+  background: linear-gradient(180deg, rgba(67,85,245,.12), rgba(67,85,245,.04));
+  border: 1px solid rgba(67,85,245,.35);
+  border-radius: 24px;
+  padding: 34px;
+}
+
+.trust-box p {
+  font-size: 18px;
+  color: #c6d0e3;
+}
+
+.trust-box strong { color: #fff; }
+
+#cta {
+  padding-top: 48px;
+  padding-bottom: 100px;
+}
+
+.cta-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 34px;
+  text-align: center;
+}
+
+.cta-form {
+  margin: 20px auto 0;
+  max-width: 560px;
+  display: flex;
+  gap: 10px;
+}
+
+.cta-form input {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.cta-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67,85,245,.2);
+}
+
+.feedback {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #9de4c8;
+  min-height: 22px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .pain-grid,
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-form {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+  <section id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="badge">Early Adopter Romania - 50% reducere</span>
+        <h1>Control total asupra contractelor tale. Fara Excel, fara termene ratate.</h1>
+        <p>Automatizeaza gestiunea contractelor cu ajutorul AI. Extrage clauze, monitorizeaza expirari si elimina riscurile juridice intr-o interfata intuitiva.</p>
+        <a class="btn" href="#cta">Vreau acces in programul Early Adopter (50% reducere)</a>
+      </div>
+      <a class="video-thumb" href="#demo" aria-label="Vezi demo">
+        <div class="play-button">
+          <div class="play-circle">▶</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="container">
+      <h2 class="section-title">Problema pe care o rezolva Contris</h2>
+      <p class="section-sub">Daca te regasesti in situatiile de mai jos, ai nevoie de un sistem dedicat, nu de inca un Excel.</p>
+      <div class="pain-grid">
+        <article class="pain-card">
+          <div class="icon i-danger">✉</div>
+          <h3>E-mailuri pierdute</h3>
+          <p>Te-ai saturat sa cauti contractul final prin sute de e-mailuri?</p>
+        </article>
+        <article class="pain-card">
+          <div class="icon i-warn">⏰</div>
+          <h3>Expirari uitate</h3>
+          <p>Penalitati sau reinnoiri automate pentru ca ai ratat o fereastra de 30 de zile?</p>
+        </article>
+        <article class="pain-card">
+          <div class="icon i-primary">⚖</div>
+          <h3>Clauze ascunse</h3>
+          <p>Riscuri juridice pe care nimeni nu are timp sa le citeasca in 40 de pagini?</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="container">
+      <h2 class="section-title">Vezi cum functioneaza Contris in 75 de secunde.</h2>
+      <p class="section-sub">Inlocuieste acest embed cu video-ul tau final (YouTube, Vimeo sau Vercel video).</p>
+      <div class="player-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Demo Contris"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="container">
+      <h2 class="section-title">Cele 3 beneficii cheie</h2>
+      <div class="benefit-grid">
+        <article class="benefit-card">
+          <div class="icon i-primary">🧠</div>
+          <h3>Centralizare AI</h3>
+          <p>Incarci PDF-ul si sistemul iti face fisa automat.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon i-primary">💬</div>
+          <h3>Asistent Conversational</h3>
+          <p>Pune intrebari contractului tau si primeste raspunsuri instant.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon i-primary">🔔</div>
+          <h3>Alerte Inteligente</h3>
+          <p>Notificari prin e-mail si SMS inainte de orice data critica.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="container">
+      <div class="trust-box">
+        <p><strong>Lansam oficial in curand.</strong> Cautam primele 20 de firme din Romania (Clinici si Transporturi) care vor sa testeze solutia si sa ne ajute sa o definim.</p>
+        <p style="margin-top:12px;"><strong>Inscrie-te acum si blocheaza-ti reducerea de 50% pe viata la lansare.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="section-title">Acces prioritar</h2>
+        <p>Lasa adresa de e-mail si revenim rapid cu pasii pentru intrarea in programul Early Adopter.</p>
+        <form class="cta-form" id="signup-form">
+          <input id="email" type="email" placeholder="adresa ta de e-mail" required>
+          <button class="btn" type="submit">Vreau acces prioritar</button>
+        </form>
+        <p class="feedback" id="feedback"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© 2026 Contris - Landing page Early Adopter</div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("signup-form");
+    const feedback = document.getElementById("feedback");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const input = document.getElementById("email");
+      const email = input.value.trim();
+
+      if (!email || !email.includes("@")) {
+        feedback.style.color = "#ffbe72";
+        feedback.textContent = "Te rog sa introduci un e-mail valid.";
+        return;
+      }
+
+      feedback.style.color = "#9de4c8";
+      feedback.textContent = "Perfect. Te-am trecut pe lista de acces prioritar.";
+      input.value = "";
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contris – Acces Early Adopter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --panel: #171c28;
+  --panel-2: #1f2636;
+  --line: #2a3447;
+  --text: #e9edf5;
+  --muted: #9aa6bd;
+  --primary: #4355f5;
+  --primary-2: #3344e8;
+  --ok: #10b981;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Geist", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+section { padding: 88px 0; }
+h1, h2, h3 {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+h1, h2 { font-family: "Instrument Serif", Georgia, serif; }
+p { color: var(--muted); }
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 22px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.btn:hover { background: var(--primary-2); transform: translateY(-1px); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(67,85,245,.4);
+  background: rgba(67,85,245,.12);
+  color: #c4cbff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Hero */
+#hero { padding-top: 110px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.hero-copy h1 {
+  font-size: clamp(38px, 5vw, 66px);
+  margin-bottom: 18px;
+}
+.hero-copy p {
+  font-size: 18px;
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+
+.video-thumb {
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #1f2636, #111826);
+  min-height: 300px;
+  overflow: hidden;
+}
+.video-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.5)),
+    url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80") center/cover;
+}
+.play-button {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.play-circle {
+  width: 88px; height: 88px;
+  border-radius: 999px;
+  background: rgba(67,85,245,.95);
+  border: 2px solid rgba(255,255,255,.35);
+  box-shadow: 0 0 0 14px rgba(67,85,245,.18);
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+}
+
+/* Problem */
+.section-title {
+  font-size: clamp(30px, 4vw, 48px);
+  margin-bottom: 14px;
+}
+.section-sub {
+  margin-bottom: 30px;
+  max-width: 760px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.pain-card, .benefit-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.pain-card h3, .benefit-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+.i-danger { background: rgba(239,68,68,.13); color: var(--danger); }
+.i-warn { background: rgba(245,158,11,.13); color: var(--warn); }
+.i-primary { background: rgba(67,85,245,.13); color: #94a0ff; }
+
+/* Demo center */
+#demo .player-wrap {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0d1018;
+}
+.player-wrap iframe {
+  width: 100%;
+  height: min(62vw, 640px);
+  border: 0;
+  display: block;
+}
+
+/* Benefits */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* Scarcity */
+#trust .trust-box {
+  background: linear-gradient(180deg, rgba(67,85,245,.12), rgba(67,85,245,.04));
+  border: 1px solid rgba(67,85,245,.35);
+  border-radius: 24px;
+  padding: 34px;
+}
+.trust-box p {
+  font-size: 18px;
+  color: #c6d0e3;
+}
+.trust-box strong { color: #fff; }
+
+/* Final CTA */
+#cta {
+  padding-top: 48px;
+  padding-bottom: 100px;
+}
+.cta-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 34px;
+  text-align: center;
+}
+.cta-form {
+  margin: 20px auto 0;
+  max-width: 560px;
+  display: flex;
+  gap: 10px;
+}
+.cta-form input {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 14px 16px;
+  outline: none;
+}
+.cta-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67,85,245,.2);
+}
+
+.feedback {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #9de4c8;
+  min-height: 22px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .pain-grid,
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-form {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+  <section id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="badge">Early Adopter Romania - 50% reducere</span>
+        <h1>Control total asupra contractelor tale. Fara Excel, fara termene ratate.</h1>
+        <p>Automatizeaza gestiunea contractelor cu ajutorul AI. Extrage clauze, monitorizeaza expirari si elimina riscurile juridice intr-o interfata intuitiva.</p>
+        <a class="btn" href="#cta">Vreau acces in programul Early Adopter (50% reducere)</a>
+      </div>
+      <a class="video-thumb" href="#demo" aria-label="Vezi demo">
+        <div class="play-button">
+          <div class="play-circle">▶</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="container">
+      <h2 class="section-title">Problema pe care o rezolva Contris</h2>
+      <p class="section-sub">Daca te regasesti in situatiile de mai jos, ai nevoie de un sistem dedicat, nu de inca un Excel.</p>
+      <div class="pain-grid">
+        <article class="pain-card">
+          <div class="icon i-danger">✉</div>
+          <h3>E-mailuri pierdute</h3>
+          <p>Te-ai saturat sa cauti contractul final prin sute de e-mailuri?</p>
+        </article>
+        <article class="pain-card">
+          <div class="icon i-warn">⏰</div>
+          <h3>Expirari uitate</h3>
+          <p>Penalitati sau reinnoiri automate pentru ca ai ratat o fereastra de 30 de zile?</p>
+        </article>
+        <article class="pain-card">
+          <div class="icon i-primary">⚖</div>
+          <h3>Clauze ascunse</h3>
+          <p>Riscuri juridice pe care nimeni nu are timp sa le citeasca in 40 de pagini?</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="container">
+      <h2 class="section-title">Vezi cum functioneaza Contris in 75 de secunde.</h2>
+      <p class="section-sub">Inlocuieste acest embed cu video-ul tau final (YouTube, Vimeo sau Vercel video).</p>
+      <div class="player-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Demo Contris"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="container">
+      <h2 class="section-title">Cele 3 beneficii cheie</h2>
+      <div class="benefit-grid">
+        <article class="benefit-card">
+          <div class="icon i-primary">🧠</div>
+          <h3>Centralizare AI</h3>
+          <p>Incarci PDF-ul si sistemul iti face fisa automat.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon i-primary">💬</div>
+          <h3>Asistent Conversational</h3>
+          <p>Pune intrebari contractului tau si primeste raspunsuri instant.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon i-primary">🔔</div>
+          <h3>Alerte Inteligente</h3>
+          <p>Notificari prin e-mail si SMS inainte de orice data critica.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="container">
+      <div class="trust-box">
+        <p><strong>Lansam oficial in curand.</strong> Cautam primele 20 de firme din Romania (Clinici si Transporturi) care vor sa testeze solutia si sa ne ajute sa o definim.</p>
+        <p style="margin-top:12px;"><strong>Inscrie-te acum si blocheaza-ti reducerea de 50% pe viata la lansare.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="section-title">Acces prioritar</h2>
+        <p>Lasa adresa de e-mail si revenim rapid cu pasii pentru intrarea in programul Early Adopter.</p>
+        <form class="cta-form" id="signup-form">
+          <input id="email" type="email" placeholder="adresa ta de e-mail" required>
+          <button class="btn" type="submit">Vreau acces prioritar</button>
+        </form>
+        <p class="feedback" id="feedback"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© 2026 Contris - Landing page Early Adopter</div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("signup-form");
+    const feedback = document.getElementById("feedback");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const input = document.getElementById("email");
+      const email = input.value.trim();
+
+      if (!email || !email.includes("@")) {
+        feedback.style.color = "#ffbe72";
+        feedback.textContent = "Te rog sa introduci un e-mail valid.";
+        return;
+      }
+
+      feedback.style.color = "#9de4c8";
+      feedback.textContent = "Perfect. Te-am trecut pe lista de acces prioritar.";
+      input.value = "";
+    });
+  </script>
+</body>
+</html>
+
+/* ═══════════════════════════════════════
+   APP SHELL
+═══════════════════════════════════════ */
+.app { display: flex; height: 100vh; overflow: hidden; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: var(--white);
+  border-right: 1px solid var(--mist);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sb-logo {
+  padding: 16px 18px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--mist);
+}
+.sb-logo-lockup { display: flex; align-items: center; gap: 9px; }
+.sb-logo-icon {
+  width: 30px; height: 30px; background: var(--indigo);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.sb-logo-icon svg { width: 16px; height: 16px; }
+.sb-logo-text { font-weight: 800; font-size: 17px; color: var(--ink); letter-spacing: -.03em; }
+.sb-logo-text span { color: var(--indigo); }
+.sb-plan {
+  margin: 10px 12px;
+  background: linear-gradient(135deg, var(--prussian), var(--prussian-3));
+  border-radius: var(--r-md); padding: 8px 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sb-plan-text { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.7); }
+.sb-plan-badge {
+  margin-left: auto; background: var(--indigo);
+  color: white; font-size: 9px; font-weight: 700;
+  padding: 2px 7px; border-radius: var(--r-full);
+}
+.sb-nav { flex: 1; overflow-y: auto; padding: 6px 10px; }
+.sb-section-lbl {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--steel);
+  padding: 10px 10px 4px;
+}
+.sb-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 10px; border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500; color: var(--smoke);
+  cursor: pointer; transition: all .15s; margin-bottom: 1px;
+  user-select: none;
+}
+.sb-item:hover { background: var(--frost); color: var(--ink); }
+.sb-item.active { background: var(--indigo-light); color: var(--indigo); font-weight: 600; }
+.sb-item svg { width: 15px; height: 15px; flex-shrink: 0; opacity: .7; }
+.sb-item.active svg { opacity: 1; }
+.sb-badge {
+  margin-left: auto; font-size: 10px; font-weight: 700;
+  padding: 1px 7px; border-radius: var(--r-full); min-width: 20px; text-align: center;
+}
+.sb-badge.blue { background: var(--indigo-light); color: var(--indigo); }
+.sb-badge.red  { background: var(--rose-bg); color: var(--rose); }
+.sb-badge.beta { background: var(--violet-bg); color: var(--violet); }
+.sb-footer {
+  padding: 10px 12px; border-top: 1px solid var(--mist);
+}
+.sb-user {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 8px; border-radius: var(--r-md); cursor: pointer;
+}
+.sb-user:hover { background: var(--frost); }
+.av {
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; flex-shrink: 0; font-size: 12px;
+}
+.av-md { width: 36px; height: 36px; }
+.av-sm { width: 28px; height: 28px; font-size: 10px; }
+.av-prussian { background: #EDF2FB; color: var(--prussian); }
+.av-indigo   { background: var(--indigo-light); color: var(--indigo); }
+.av-emerald  { background: var(--emerald-bg); color: #065F46; }
+.sb-user-name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.sb-user-role { font-size: 11px; color: var(--slate); }
+
+/* MAIN */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* TOPBAR */
+.topbar {
+  height: 54px; background: var(--white);
+  border-bottom: 1px solid var(--mist);
+  padding: 0 24px;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.topbar-breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--slate);
+}
+.topbar-breadcrumb .active { color: var(--ink); font-weight: 600; }
+.topbar-breadcrumb .sep { color: var(--steel); }
+.topbar-spacer { flex: 1; }
+.topbar-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--arctic); border: 1px solid var(--mist);
+  border-radius: var(--r-md); padding: 6px 12px;
+  font-size: 12px; color: var(--slate); width: 220px;
+}
+.topbar-icon {
+  width: 32px; height: 32px; border-radius: var(--r-sm);
+  background: var(--arctic); border: 1px solid var(--mist);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--smoke); position: relative;
+}
+.topbar-icon:hover { background: var(--frost); }
+.notif-dot {
+  position: absolute; top: 5px; right: 5px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rose); border: 1.5px solid var(--white);
+}
+.topbar-user {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px; border-radius: var(--r-md);
+  cursor: pointer; border: 1px solid var(--mist);
+}
+.topbar-user:hover { background: var(--frost); }
+.tu-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+.tu-role { font-size: 10px; color: var(--slate); }
+
+/* CONTENT AREA */
+.content { flex: 1; overflow-y: auto; background: var(--arctic); }
+.view { display: none; padding: 24px; min-height: 100%; }
+.view.active { display: flex; flex-direction: column; gap: 20px; }
+
+/* PAGE TITLE */
+.page-title-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.page-title { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -.02em; }
+.page-title-sub { font-size: 13px; color: var(--slate); margin-top: 2px; }
+.page-title-actions { display: flex; gap: 8px; align-items: center; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  font-family: var(--f-body); font-weight: 600; font-size: 13px;
+  border: none; cursor: pointer; border-radius: var(--r-md);
+  text-decoration: none; white-space: nowrap;
+  transition: all .15s ease; letter-spacing: -.01em;
+  padding: 9px 18px; height: 38px;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--indigo); color: #fff; box-shadow: var(--sh-indigo); }
+.btn-primary:hover { background: var(--indigo-hover); transform: translateY(-1px); }
+.btn-prussian { background: var(--prussian); color: #fff; }
+.btn-prussian:hover { background: var(--prussian-2); transform: translateY(-1px); }
+.btn-secondary { background: var(--white); color: var(--ink); border: 1.5px solid var(--mist); box-shadow: var(--sh-xs); }
+.btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-light); }
+.btn-ghost { background: transparent; color: var(--smoke); border: 1.5px solid var(--mist); }
+.btn-ghost:hover { background: var(--frost); color: var(--ink); }
+.btn-danger { background: var(--rose-bg); color: var(--rose); border: 1px solid rgba(239,68,68,.2); }
+.btn-sm { height: 30px; padding: 5px 12px; font-size: 12px; border-radius: var(--r-sm); }
+.btn-lg { height: 44px; padding: 10px 24px; font-size: 15px; border-radius: var(--r-lg); font-weight: 700; }
+.btn-xl { height: 52px; padding: 12px 28px; font-size: 16px; border-radius: var(--r-xl); font-weight: 700; }
+.btn-full { width: 100%; }
+.btn-icon { padding: 0; width: 38px; }
+.btn-icon.btn-sm { width: 30px; }
+.btn-success { background: var(--emerald); color: #fff; }
+.btn-success:hover { background: #0da271; transform: translateY(-1px); }
+
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: var(--r-full);
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.bdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.b-emerald { background: var(--emerald-bg); color: #065F46; }
+.b-emerald .bdot { background: var(--emerald); }
+.b-amber   { background: var(--amber-bg); color: #92400E; }
+.b-amber .bdot { background: var(--amber); }
+.b-rose    { background: var(--rose-bg); color: #991B1B; }
+.b-rose .bdot { background: var(--rose); }
+.b-indigo  { background: var(--indigo-light); color: var(--indigo); }
+.b-indigo .bdot { background: var(--indigo); }
+.b-prussian { background: #EDF2FB; color: var(--prussian); }
+.b-prussian .bdot { background: var(--prussian); }
+.b-violet  { background: var(--violet-bg); color: #5B21B6; }
+.b-violet .bdot { background: var(--violet); }
+.b-slate   { background: var(--frost); color: var(--smoke); border: 1px solid var(--mist); }
+.b-slate .bdot { background: var(--slate); }
+
+/* CARDS */
+.card {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm);
+}
+.card-body { padding: 20px; }
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--mist); gap: 12px;
+}
+.card-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+.card-sub   { font-size: 11px; color: var(--slate); margin-top: 2px; }
+
+/* KPI CARDS */
+.kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); padding: 18px 20px; box-shadow: var(--sh-sm);
+}
+.kpi-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--slate); letter-spacing: .04em; text-transform: uppercase; }
+.kpi-icon { width: 34px; height: 34px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.ki-indigo   { background: var(--indigo-light); }
+.ki-emerald  { background: var(--emerald-bg); }
+.ki-amber    { background: var(--amber-bg); }
+.ki-prussian { background: #EDF2FB; }
+.ki-rose     { background: var(--rose-bg); }
+.kpi-value { font-family: var(--f-display); font-size: 30px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+.kpi-delta { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.delta-up   { color: var(--emerald); }
+.delta-down { color: var(--rose); }
+.delta-neutral { color: var(--slate); }
+
+/* PROGRESS */
+.prog { height: 5px; background: var(--frost); border-radius: var(--r-full); overflow: hidden; }
+.prog-fill { height: 100%; border-radius: var(--r-full); }
+.pf-indigo   { background: var(--indigo); }
+.pf-emerald  { background: var(--emerald); }
+.pf-amber    { background: var(--amber); }
+.pf-prussian { background: var(--prussian); }
+.pf-rose     { background: var(--rose); }
+
+/* ALERTS */
+.alert {
+  padding: 12px 14px; border-radius: var(--r-md);
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; line-height: 1.5; border-left: 3px solid;
+}
+.a-indigo  { background: var(--indigo-light); border-color: var(--indigo); color: #2840C7; }
+.a-emerald { background: var(--emerald-bg); border-color: var(--emerald); color: #065F46; }
+.a-amber   { background: var(--amber-bg); border-color: var(--amber); color: #92400E; }
+.a-rose    { background: var(--rose-bg); border-color: var(--rose); color: #991B1B; }
+
+/* TABLE */
+.table-wrap { overflow: hidden; border-radius: var(--r-xl); }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  padding: 9px 14px; text-align: left;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--slate);
+  background: var(--arctic); border-bottom: 1px solid var(--mist);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--mist); transition: background .1s; cursor: pointer; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--arctic); }
+tbody td { padding: 11px 14px; font-size: 13px; color: var(--ink); vertical-align: middle; }
+.td-muted { color: var(--slate); font-size: 11px; }
+
+/* TOGGLE */
+.tog { width: 42px; height: 22px; background: var(--steel); border-radius: var(--r-full); position: relative; transition: background .15s; flex-shrink: 0; cursor: pointer; }
+.tog.on { background: var(--indigo); }
+.tog::after { content: ''; position: absolute; width: 16px; height: 16px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform .15s; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.tog.on::after { transform: translateX(20px); }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid var(--mist); margin: 0; }
+
+/* AI CHIP */
+.ai-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--prussian); color: var(--indigo-mid);
+  border-radius: var(--r-full); padding: 4px 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes slideRight { from { width:0; } to { width:var(--target-w,100%); } }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes countdownTick { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+@keyframes rowIn { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:none} }
+@keyframes flagPop { 0%{opacity:0;transform:scale(.5) translateX(10px)} 70%{transform:scale(1.1) translateX(-2px)} 100%{opacity:1;transform:scale(1) translateX(0)} }
+@keyframes typingDot { 0%,80%,100%{transform:scale(0.5);opacity:.4} 40%{transform:scale(1);opacity:1} }
+@keyframes highlightPulse { 0%{background:rgba(67,85,245,0)} 30%{background:rgba(67,85,245,.25)} 100%{background:rgba(67,85,245,.12)} }
+@keyframes signedStamp { 0%{opacity:0;transform:scale(2) rotate(-15deg)} 60%{transform:scale(.95) rotate(2deg)} 100%{opacity:1;transform:scale(1) rotate(-5deg)} }
+
+.fade-up { animation: fadeUp .35s ease both; }
+
+
+/* ═══════════════════════════════════════
+   VIEW 1 — INBOX
+═══════════════════════════════════════ */
+.drop-zone {
+  border: 2px dashed var(--steel);
+  border-radius: var(--r-xl);
+  background: var(--white);
+  padding: 40px;
+  text-align: center;
+  transition: all .2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.drop-zone.drag-over {
+  border-color: var(--indigo);
+  background: var(--indigo-light);
+  box-shadow: 0 0 0 4px var(--indigo-dim);
+}
+.drop-zone.loading { cursor: default; }
+.dz-icon { font-size: 42px; margin-bottom: 12px; }
+.dz-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.dz-sub { font-size: 13px; color: var(--slate); }
+.dz-loading {
+  display: none; flex-direction: column; align-items: center; gap: 12px;
+  position: absolute; inset: 0; background: var(--indigo-light);
+  justify-content: center; border-radius: var(--r-xl);
+}
+.dz-loading.show { display: flex; animation: fadeIn .2s ease; }
+.dz-spinner {
+  width: 40px; height: 40px; border: 3px solid var(--indigo-dim);
+  border-top-color: var(--indigo); border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+.dz-loading-text { font-size: 14px; font-weight: 600; color: var(--indigo); }
+.dz-loading-sub { font-size: 12px; color: var(--smoke); }
+
+/* flying files animation */
+.flying-file {
+  position: fixed; pointer-events: none; z-index: 9999;
+  width: 44px; height: 52px;
+  background: white; border: 1.5px solid var(--mist); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: var(--sh-md);
+  transition: all 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* contract row animation */
+.contract-row-new {
+  animation: rowIn .4s ease both;
+}
+
+/* AI extract tag */
+.ai-extract {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--indigo-light); color: var(--indigo);
+  font-size: 10px; font-weight: 700; padding: 2px 7px;
+  border-radius: var(--r-full); margin-left: 6px;
+}
+
+/* ═══════════════════════════════════════
+   VIEW 2 — CONTRACT DETAIL + RISK
+═══════════════════════════════════════ */
+.contract-layout {
+  display: grid; grid-template-columns: 1fr 360px; gap: 16px;
+  flex: 1;
+}
+.pdf-viewer {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm);
+  overflow: hidden; display: flex; flex-direction: column;
+  position: relative;
+}
+.pdf-toolbar {
+  background: #F5F5F7; border-bottom: 1px solid var(--mist);
+  padding: 8px 16px; display: flex; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--smoke);
+}
+.pdf-filename { font-weight: 600; color: var(--ink); }
+.pdf-body { flex: 1; padding: 24px; overflow-y: auto; position: relative; }
+.pdf-content {
+  font-size: 13.5px; line-height: 1.85; color: #2a2a2a;
+  font-family: 'Times New Roman', serif;
+  max-width: 600px; margin: 0 auto;
+}
+.pdf-content h2 { font-size: 15px; font-weight: 700; text-align: center; margin-bottom: 16px; text-transform: uppercase; }
+.pdf-content h3 { font-size: 13px; font-weight: 700; margin: 18px 0 8px; color: #1A1D2E; }
+.pdf-content p  { margin-bottom: 11px; text-align: justify; }
+.pdf-highlight {
+  background: rgba(67,85,245,.12); border-radius: 2px;
+  padding: 1px 2px; cursor: pointer; transition: background .2s;
+}
+.pdf-highlight.active {
+  background: rgba(67,85,245,.25);
+  animation: highlightPulse .8s ease both;
+}
+.risk-hl {
+  border-radius: 2px; padding: 1px 2px; transition: background .2s;
+  /* no red styling until scan runs */
+}
+.pdf-body.scanned .risk-hl {
+  background: rgba(239,68,68,.10);
+  border-bottom: 2px solid var(--rose);
+}
+.pdf-body.scanned .risk-hl.active { background: rgba(239,68,68,.22); }
+
+/* Risk flags */
+.risk-flags { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; }
+.risk-flag {
+  position: absolute; right: 10px;
+  display: flex; align-items: center; gap: 6px;
+  opacity: 0; pointer-events: none;
+}
+.risk-flag.show {
+  opacity: 1; pointer-events: auto;
+  animation: flagPop .5s ease both;
+}
+.risk-flag-marker {
+  background: var(--rose); color: white;
+  font-size: 9px; font-weight: 700;
+  padding: 3px 8px; border-radius: var(--r-full);
+  white-space: nowrap; box-shadow: var(--sh-sm);
+  display: flex; align-items: center; gap: 4px;
+  cursor: pointer;
+}
+.risk-flag-marker:hover { background: #d63f3f; }
+
+/* Right panel */
+.risk-panel {
+  display: flex; flex-direction: column; gap: 14px; overflow-y: auto;
+}
+.risk-card {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm); overflow: hidden;
+}
+.risk-item {
+  padding: 13px 16px; border-bottom: 1px solid var(--mist);
+  display: flex; align-items: flex-start; gap: 10px;
+  animation: rowIn .4s ease both;
+}
+.risk-item:last-child { border-bottom: none; }
+.risk-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--rose-bg); color: var(--rose);
+  font-size: 10px; font-weight: 700; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.risk-num.warn { background: var(--amber-bg); color: #92400E; }
+.risk-title { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.risk-desc  { font-size: 11.5px; color: var(--slate); line-height: 1.5; }
+
+/* Scanning overlay */
+.scan-overlay {
+  position: absolute; inset: 0; background: rgba(255,255,255,.0);
+  pointer-events: none; overflow: hidden; border-radius: var(--r-xl);
+}
+.scan-line {
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--indigo), transparent);
+  box-shadow: 0 0 20px var(--indigo);
+  position: absolute; left: 0;
+  transition: top .05s linear;
+  display: none;
+}
+
+/* ═══════════════════════════════════════
+   VIEW 3 — AI CHAT
+═══════════════════════════════════════ */
+.chat-layout {
+  display: grid; grid-template-columns: 1fr 380px; gap: 16px;
+  flex: 1;
+}
+.chat-panel {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.chat-header {
+  padding: 14px 18px; border-bottom: 1px solid var(--mist);
+  display: flex; align-items: center; gap: 10px;
+}
+.chat-ai-icon {
+  width: 34px; height: 34px; background: var(--prussian);
+  border-radius: var(--r-md); display: flex; align-items: center;
+  justify-content: center;
+}
+.chat-messages {
+  max-height: 220px; overflow-y: auto; padding: 18px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.msg { display: flex; gap: 10px; max-width: 90%; }
+.msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.msg-bubble {
+  padding: 10px 14px; border-radius: 14px;
+  font-size: 13px; line-height: 1.55;
+}
+.msg.ai .msg-bubble {
+  background: var(--arctic); border: 1px solid var(--mist);
+  color: var(--ink); border-radius: 4px 14px 14px 14px;
+}
+.msg.user .msg-bubble {
+  background: var(--indigo); color: white;
+  border-radius: 14px 4px 14px 14px;
+}
+.msg-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; margin-top: 2px;
+}
+.msg-ai-av { background: var(--prussian); color: var(--indigo-mid); }
+.msg-user-av { background: var(--indigo-light); color: var(--indigo); }
+.msg-ref {
+  margin-top: 8px; padding: 8px 12px;
+  background: var(--indigo-light); border-left: 3px solid var(--indigo);
+  border-radius: 6px; font-size: 11.5px; color: #2840C7;
+  font-style: italic;
+}
+.msg-ref-label { font-weight: 700; font-style: normal; margin-bottom: 3px; font-size: 10px; color: var(--indigo); text-transform: uppercase; letter-spacing: .06em; }
+.typing-indicator { display: flex; gap: 4px; align-items: center; padding: 10px 14px; }
+
+/* AI contract result card */
+.ai-contract-card {
+  margin-top: 10px;
+  background: var(--white);
+  border: 1.5px solid var(--indigo);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(67,85,245,.12);
+}
+.ai-cc-header {
+  background: var(--indigo-light);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid rgba(67,85,245,.15);
+}
+.ai-cc-header svg { color: var(--indigo); flex-shrink: 0; }
+.ai-cc-id { font-size: 10px; font-weight: 700; color: var(--indigo); letter-spacing: .07em; }
+.ai-cc-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.ai-cc-type { font-size: 11px; color: var(--slate); margin-top: 1px; }
+.ai-cc-body { padding: 12px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.ai-cc-field label { font-size: 9.5px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 2px; }
+.ai-cc-field span  { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.ai-cc-clauses { padding: 10px 14px; border-top: 1px solid var(--mist); font-size: 12px; color: var(--smoke); line-height: 1.5; }
+.ai-cc-footer { padding: 10px 14px; border-top: 1px solid var(--mist); display: flex; gap: 8px; }
+.ai-cc-footer .btn { font-size: 11px; padding: 5px 12px; }
+
+/* AI clause highlight response */
+.ai-clause-wrap { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.ai-clause-doc {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  background: var(--arctic); border: 1px solid var(--mist);
+  border-radius: var(--r-md); font-size: 11.5px;
+  color: var(--slate); margin-bottom: 4px;
+}
+.ai-clause-doc strong { color: var(--ink); }
+.ai-clause-item {
+  border-radius: var(--r-md);
+  border: 1px solid var(--mist);
+  overflow: hidden;
+  background: var(--white);
+}
+.ai-clause-item.risk-clause { border-color: rgba(239,68,68,.3); }
+.ai-clause-art {
+  padding: 7px 12px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ai-clause-item .ai-clause-art { background: var(--arctic); color: var(--slate); border-bottom: 1px solid var(--mist); }
+.ai-clause-item.risk-clause .ai-clause-art { background: rgba(239,68,68,.06); color: var(--rose); border-bottom-color: rgba(239,68,68,.2); }
+.ai-clause-label {
+  font-size: 9px; font-weight: 700; padding: 2px 7px;
+  border-radius: 99px; letter-spacing: .04em;
+}
+.risk-clause .ai-clause-label { background: rgba(239,68,68,.12); color: var(--rose); }
+.ok-clause   .ai-clause-label { background: rgba(16,185,129,.12); color: var(--emerald); }
+.ai-clause-text {
+  padding: 9px 12px; font-size: 12.5px; line-height: 1.55; color: var(--ink);
+}
+.ai-clause-item.risk-clause .ai-clause-text {
+  background: rgba(239,68,68,.03);
+}
+.ai-clause-highlight-bar {
+  height: 3px; background: var(--rose);
+  animation: clauseSlide .6s ease forwards;
+}
+@keyframes clauseSlide { from { width:0; } to { width:100%; } }
+.typing-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--slate);
+  animation: typingDot 1.2s ease infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: .2s; }
+.typing-dot:nth-child(3) { animation-delay: .4s; }
+.chat-input-area {
+  padding: 12px 16px; border-top: 1px solid var(--mist);
+  display: flex; gap: 10px; align-items: center;
+}
+.chat-input {
+  flex: 1; border: 1.5px solid var(--mist); border-radius: var(--r-lg);
+  padding: 9px 14px; font-family: var(--f-body); font-size: 13px;
+  color: var(--ink); background: var(--arctic); outline: none;
+}
+.chat-input:focus { border-color: var(--indigo); background: white; box-shadow: 0 0 0 3px var(--indigo-light); }
+.chat-input::placeholder { color: var(--slate); }
+
+/* Suggested questions */
+.chat-suggestions {
+  padding: 0 16px 12px; display: flex; gap: 6px; flex-wrap: wrap;
+}
+.chat-sug {
+  padding: 5px 12px; border: 1.5px solid var(--mist);
+  border-radius: var(--r-full); font-size: 11.5px; font-weight: 500;
+  color: var(--smoke); cursor: pointer; background: var(--white);
+  transition: all .12s; white-space: nowrap;
+}
+.chat-sug:hover { border-color: var(--indigo); color: var(--indigo); background: var(--indigo-light); }
+
+/* ═══════════════════════════════════════
+   VIEW 4 — DASHBOARD PRINCIPAL
+═══════════════════════════════════════ */
+.charts-row { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; }
+.bottom-row  { display: grid; grid-template-columns: 1fr 1.6fr; gap: 16px; }
+
+/* Bar chart */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; }
+.bc-group { display: flex; flex-direction: column; gap: 3px; align-items: stretch; flex: 1; }
+.bc-bar { flex: none; border-radius: 4px 4px 0 0; min-height: 4px; }
+.bc-bar.indigo   { background: var(--indigo); }
+.bc-bar.prussian { background: var(--prussian); }
+.bc-bar.indigo-l { background: var(--indigo-mid); }
+.chart-x-labels { display: flex; gap: 8px; margin-top: 6px; }
+.x-label { flex: 1; text-align: center; font-size: 11px; color: var(--slate); }
+.chart-legend { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--slate); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* Donut */
+.donut-wrap { display: flex; align-items: center; gap: 20px; }
+.donut { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
+.donut svg { transform: rotate(-90deg); }
+.donut-track { fill: none; stroke: var(--frost); stroke-width: 10; }
+.donut-seg { fill: none; stroke-width: 10; stroke-linecap: round; }
+.donut-lbl { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-lbl-val { font-family: var(--f-display); font-size: 18px; color: var(--ink); line-height: 1; }
+.donut-lbl-sub { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--slate); }
+.donut-stats { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.donut-stat { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.donut-stat-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+
+/* Urgent alerts section */
+.urgent-section {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm); overflow: hidden;
+}
+.urgent-title {
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 18px; border-bottom: 1px solid var(--mist);
+}
+.urgent-title svg { color: var(--rose); }
+.urgent-item {
+  background: white; border-bottom: 1px solid var(--mist);
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.urgent-item:last-child { border-bottom: none; }
+.countdown-badge {
+  background: var(--rose); color: white; font-size: 11px; font-weight: 700;
+  padding: 5px 12px; border-radius: var(--r-full);
+  animation: countdownTick 1s ease infinite;
+  white-space: nowrap; min-width: 80px; text-align: center;
+}
+.countdown-badge.amber-badge { background: var(--amber); animation: none; }
+.progress-bar-wrap { flex: 1; }
+.progress-label { font-size: 11px; color: var(--slate); margin-bottom: 4px; display: flex; justify-content: space-between; }
+.expire-bar { height: 6px; background: var(--mist); border-radius: var(--r-full); overflow: hidden; }
+.expire-fill { height: 100%; border-radius: var(--r-full); background: var(--rose); transition: width 1s ease; }
+.expire-fill.amber { background: var(--amber); }
+
+/* ═══════════════════════════════════════
+   VIEW 5 — SEMNĂTURĂ
+═══════════════════════════════════════ */
+.sign-layout {
+  display: grid; grid-template-columns: 1fr 360px; gap: 16px;
+  flex: 1;
+}
+.sign-doc {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm);
+  overflow: hidden; display: flex; flex-direction: column; position: relative;
+}
+.sign-panel {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.sign-step {
+  background: var(--white); border: 1px solid var(--mist);
+  border-radius: var(--r-xl); box-shadow: var(--sh-sm); overflow: hidden;
+}
+.sign-step-header {
+  padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--mist);
+}
+.sign-step-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.step-pending  { background: var(--frost); color: var(--slate); border: 1.5px solid var(--steel); }
+.step-active   { background: var(--indigo-light); color: var(--indigo); border: 1.5px solid var(--indigo); }
+.step-done     { background: var(--emerald-bg); color: #065F46; border: 1.5px solid var(--emerald); }
+.sign-step-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+.sign-step-body { padding: 14px 16px; }
+
+/* Signature canvas */
+.sig-canvas-wrap {
+  background: var(--arctic); border: 1.5px dashed var(--steel);
+  border-radius: var(--r-lg); padding: 20px;
+  text-align: center; cursor: crosshair; min-height: 100px;
+  position: relative; overflow: hidden;
+}
+.sig-canvas-wrap.signed {
+  background: var(--emerald-bg); border-color: var(--emerald);
+  border-style: solid;
+}
+.sig-placeholder { color: var(--slate); font-size: 13px; }
+.sig-result {
+  display: none; font-family: 'Dancing Script', cursive;
+  font-size: 28px; color: var(--prussian); font-style: italic;
+}
+.sig-result.show { display: block; animation: fadeIn .4s ease; }
+.sig-date { font-size: 11px; color: var(--slate); margin-top: 6px; }
+
+/* Stamp */
+.contract-stamp {
+  position: absolute; top: 30%; right: 24px;
+  width: 100px; height: 100px; border-radius: 50%;
+  border: 4px solid var(--emerald); color: var(--emerald);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .06em; text-align: center;
+  opacity: 0; pointer-events: none;
+  transform: rotate(-15deg);
+}
+.contract-stamp.show {
+  opacity: .85; pointer-events: auto;
+  animation: signedStamp .6s ease both;
+}
+
+/* Status timeline */
+.status-timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item {
+  display: flex; align-items: flex-start; gap: 10px; padding: 8px 0;
+  position: relative;
+}
+.timeline-item:not(:last-child)::before {
+  content: ''; position: absolute; left: 11px; top: 28px;
+  width: 2px; height: calc(100% - 8px); background: var(--mist);
+}
+.timeline-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; position: relative; z-index: 1; margin-top: 2px;
+}
+.tl-done    { background: var(--emerald); color: white; }
+.tl-active  { background: var(--indigo); color: white; animation: pulse 1.5s ease infinite; }
+.tl-pending { background: var(--frost); border: 1.5px solid var(--steel); color: var(--slate); }
+.timeline-content { flex: 1; }
+.timeline-title { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.timeline-sub   { font-size: 11px; color: var(--slate); }
+
+/* Signatory row */
+.signatory-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--mist);
+}
+.signatory-row:last-child { border-bottom: none; }
+.signatory-status { margin-left: auto; }
+
+/* ═══════════════════════════════════════
+   MISC
+═══════════════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.empty-state {
+  text-align: center; padding: 60px 20px;
+  color: var(--slate);
+}
+.empty-icon { font-size: 48px; margin-bottom: 12px; }
+.empty-title { font-size: 16px; font-weight: 600; color: var(--smoke); margin-bottom: 6px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--steel); }
+
+/* ═══════════════════════════════════════
+   DEMO NAV (top strip for quick navigation)
+═══════════════════════════════════════ */
+.demo-nav {
+  display: flex; align-items: center; gap: 0;
+  background: var(--prussian); border-bottom: 1px solid var(--prussian-2);
+  padding: 0; overflow: hidden; flex-shrink: 0;
+}
+.demo-nav-step {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px; font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,.45); cursor: pointer; transition: all .15s;
+  border-right: 1px solid rgba(255,255,255,.08); white-space: nowrap;
+}
+.demo-nav-step:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.7); }
+.demo-nav-step.active { background: var(--indigo); color: white; }
+.demo-nav-step-num {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(255,255,255,.12); color: inherit;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; flex-shrink: 0;
+}
+.demo-nav-step.active .demo-nav-step-num { background: rgba(255,255,255,.25); }
+.demo-nav-spacer { flex: 1; }
+.demo-nav-label {
+  padding: 0 16px; font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,.25); letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* File items display */
+.file-items {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; justify-content: center;
+}
+.file-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  opacity: 0; transition: opacity .3s ease;
+}
+.file-item.show { opacity: 1; }
+.file-item-icon {
+  width: 42px; height: 52px; background: white; border: 1.5px solid var(--mist);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--sh-sm); position: relative; color: var(--slate);
+}
+.file-item-icon::after {
+  content: 'PDF'; position: absolute; bottom: 0; right: 0;
+  background: var(--rose); color: white; font-size: 7px; font-weight: 700;
+  padding: 1px 4px; border-radius: 2px 0 4px 0;
+}
+.file-item-name { font-size: 9.5px; color: var(--slate); text-align: center; max-width: 60px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Notification toast */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--ink); color: white; border-radius: var(--r-lg);
+  padding: 12px 18px; font-size: 13px; font-weight: 500;
+  box-shadow: var(--sh-xl); z-index: 10000; max-width: 320px;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; transform: translateY(20px); pointer-events: none;
+  transition: all .3s ease;
+}
+.toast.show { opacity: 1; transform: none; pointer-events: auto; }
+
+/* Contract list item */
+.contract-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 16px; border-bottom: 1px solid var(--mist);
+  cursor: pointer; transition: background .1s;
+}
+.contract-item:last-child { border-bottom: none; }
+.contract-item:hover { background: var(--arctic); }
+.ci-icon {
+  width: 34px; height: 34px; border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.ci-info { flex: 1; min-width: 0; }
+.ci-name { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ci-meta { font-size: 11px; color: var(--slate); margin-top: 1px; }
+
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ═══ SIDEBAR ═══ -->
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-lockup">
+        <div class="sb-logo-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="sb-logo-text">Contri<span>s</span></div>
+      </div>
+    </div>
+
+    <div class="sb-plan">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,202,254,.8)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <div>
+        <div class="sb-plan-text">Business Plan</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);">AI inclus · 10 utilizatori</div>
+      </div>
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section-lbl">General</div>
+      <div class="sb-item" onclick="switchView('dashboard')" id="nav-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </div>
+      <div class="sb-item" onclick="switchView('inbox')" id="nav-inbox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+        Inbox
+        <span class="sb-badge red">3</span>
+      </div>
+      <div class="sb-item" onclick="switchView('contracts')" id="nav-contracts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Contracte
+        <span class="sb-badge blue">142</span>
+      </div>
+      <div class="sb-item" onclick="switchView('risk')" id="nav-risk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Analiză Riscuri
+        <span class="sb-badge red">6</span>
+      </div>
+      <div class="sb-item" onclick="switchView('chat')" id="nav-chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        AI Asistent
+        <span class="sb-badge" style="background:var(--violet-bg);color:var(--violet);">Beta</span>
+      </div>
+      <div class="sb-item" onclick="switchView('signature')" id="nav-signature">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Semnătură
+      </div>
+
+      <div class="sb-section-lbl" style="margin-top:8px;">Instrumente</div>
+      <div class="sb-item" id="nav-reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Rapoarte
+      </div>
+      <div class="sb-item" id="nav-templates">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Template-uri
+      </div>
+      <div class="sb-item" id="nav-partners">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Parteneri
+      </div>
+      <div class="sb-section-lbl" style="margin-top:8px;">Cont</div>
+      <div class="sb-item" id="nav-settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Setări
+      </div>
+    </div>
+
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="av av-md av-prussian">MA</div>
+        <div>
+          <div class="sb-user-name">Maria Andreescu</div>
+          <div class="sb-user-role">Legal Manager</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <div class="main">
+    <!-- Demo navigation strip -->
+    <div class="demo-nav">
+      <div class="demo-nav-label">DEMO:</div>
+      <div class="demo-nav-step" onclick="switchView('inbox')" id="demo-inbox">
+        <div class="demo-nav-step-num">1</div>
+        Intake & Import
+      </div>
+      <div class="demo-nav-step" onclick="switchView('risk')" id="demo-risk">
+        <div class="demo-nav-step-num">2</div>
+        Identificare Riscuri
+      </div>
+      <div class="demo-nav-step" onclick="switchView('chat')" id="demo-chat">
+        <div class="demo-nav-step-num">3</div>
+        AI Chat
+      </div>
+      <div class="demo-nav-step" onclick="switchView('dashboard')" id="demo-dashboard">
+        <div class="demo-nav-step-num">4</div>
+        Dashboard & Alerte
+      </div>
+      <div class="demo-nav-step" onclick="switchView('signature')" id="demo-signature">
+        <div class="demo-nav-step-num">5</div>
+        Semnătură & Arhivare
+      </div>
+    </div>
+
+    <!-- Topbar -->
+    <div class="topbar" id="topbar">
+      <div class="topbar-breadcrumb">
+        <span>Contris</span>
+        <span class="sep">›</span>
+        <span class="active" id="topbar-current">Dashboard</span>
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-search">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>Caută contracte…</span>
+      </div>
+      <div class="topbar-icon" style="position:relative;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </div>
+      <div class="topbar-user">
+        <div class="av av-sm av-prussian">MA</div>
+        <div>
+          <div class="tu-name">Maria A.</div>
+          <div class="tu-role">Legal Manager</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+       CONTENT VIEWS
+    ══════════════════════════════ -->
+    <div class="content">
+
+      <!-- ────────────────────────────
+           VIEW: INBOX
+      ──────────────────────────── -->
+      <div class="view" id="view-inbox">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">Inbox — Import contracte</div>
+            <div class="page-title-sub">Trage fișierele PDF pentru analiză automată cu AI</div>
+          </div>
+          <div class="page-title-actions">
+            <button class="btn btn-secondary btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+              Filtrează
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="triggerDemoImport()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Importă contracte
+            </button>
+          </div>
+        </div>
+
+        <!-- Alert: AI processing -->
+        <div class="alert a-indigo fade-up" id="inbox-alert" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <div><strong>AI Contris a procesat 7 contracte.</strong> Datele au fost extrase automat: 6 companii, 4 date expirare, 3 riscuri identificate.</div>
+        </div>
+
+        <!-- Drop Zone -->
+        <div class="drop-zone fade-up" id="drop-zone" onclick="triggerDemoImport()">
+          <div id="dz-normal">
+            <div class="dz-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--steel)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><polyline points="9 14 12 11 15 14"/></svg></div>
+            <div class="dz-title">Trage contractele PDF aici</div>
+            <div class="dz-sub">sau apasă pentru a selecta fișierele · Suportă PDF, Word, scan-uri</div>
+            <div class="file-items" id="file-items-display">
+              <!-- populated by JS -->
+            </div>
+          </div>
+          <div class="dz-loading" id="dz-loading">
+            <div class="dz-spinner"></div>
+            <div class="dz-loading-text">AI analizează contractele…</div>
+            <div class="dz-loading-sub">Extrage: firme, valori, date expirare, clauze de risc</div>
+          </div>
+        </div>
+
+        <!-- Contracts table -->
+        <div class="card fade-up">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Contracte importate</div>
+              <div class="card-sub">Extrase automat de AI din documentele încărcate</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <div style="display:flex;gap:6px;padding:4px 6px;background:var(--arctic);border-radius:var(--r-sm);border:1px solid var(--mist);">
+                <span style="font-size:11px;color:var(--slate);display:flex;align-items:center;gap:4px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+                  Filtrează
+                </span>
+              </div>
+              <button class="btn btn-secondary btn-sm">Export CSV</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>FIRMĂ / CONTRACT</th>
+                  <th>TIP</th>
+                  <th>VALOARE</th>
+                  <th>DATA EXPIRARE</th>
+                  <th>STATUS AI</th>
+                  <th>RISC</th>
+                  <th>ACȚIUNI</th>
+                </tr>
+              </thead>
+              <tbody id="inbox-table-body">
+                <!-- Existing contracts -->
+                <tr>
+                  <td><span class="td-muted">#038</span></td>
+                  <td>
+                    <div style="font-weight:600;">Romtelecom SA</div>
+                    <div class="td-muted">CTR-2026-038 · Semnat 12 ian 2026</div>
+                  </td>
+                  <td><span class="badge b-prussian"><span class="bdot"></span>Telecomunicații</span></td>
+                  <td style="font-weight:700;">156,000 RON</td>
+                  <td>
+                    <div style="font-weight:600;color:var(--emerald);">15 dec 2026</div>
+                    <div class="td-muted">254 zile rămase</div>
+                  </td>
+                  <td><span class="badge b-emerald"><span class="bdot"></span>Analizat</span></td>
+                  <td><span class="badge b-emerald"><span class="bdot"></span>OK</span></td>
+                  <td>
+                    <div style="display:flex;gap:4px;">
+                      <button class="btn btn-ghost btn-sm">Vizualizează</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="td-muted">#039</span></td>
+                  <td>
+                    <div style="font-weight:600;">EnergoFlex SRL</div>
+                    <div class="td-muted">CTR-2026-039 · Semnat 5 feb 2026</div>
+                  </td>
+                  <td><span class="badge b-indigo"><span class="bdot"></span>Prestări servicii</span></td>
+                  <td style="font-weight:700;">48,500 RON</td>
+                  <td>
+                    <div style="font-weight:600;color:var(--rose);">5 mai 2026</div>
+                    <div class="td-muted" style="color:var(--rose);font-weight:600;">30 zile rămase!</div>
+                  </td>
+                  <td><span class="badge b-emerald"><span class="bdot"></span>Analizat</span></td>
+                  <td><span class="badge b-rose"><span class="bdot"></span>Risc</span></td>
+                  <td>
+                    <div style="display:flex;gap:4px;">
+                      <button class="btn btn-danger btn-sm">Alertă</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────
+           VIEW: RISK ANALYSIS
+      ──────────────────────────── -->
+      <div class="view" id="view-risk">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">Analiză riscuri — IT Services SRL</div>
+            <div class="page-title-sub">Contract prestări servicii IT · CTR-2026-042 · 84,000 RON/an</div>
+          </div>
+          <div class="page-title-actions">
+            <span class="badge b-amber"><span class="bdot"></span>În analiză</span>
+            <button class="btn btn-secondary btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Export raport
+            </button>
+            <button class="btn btn-primary btn-sm" id="scan-btn" onclick="startRiskScan()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              Scanează Riscuri
+            </button>
+          </div>
+        </div>
+
+        <div class="contract-layout" style="flex:1;min-height:0;">
+          <!-- PDF Viewer -->
+          <div class="pdf-viewer">
+            <div class="pdf-toolbar">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span class="pdf-filename">Contract_IT_Services_SRL_CTR-2026-042.pdf</span>
+              <span style="margin-left:auto;color:var(--slate);font-size:11px;">Pagina 1 din 8</span>
+              <div style="display:flex;gap:6px;">
+                <button class="btn btn-ghost btn-sm" style="height:26px;padding:4px 10px;font-size:11px;">−</button>
+                <span style="font-size:12px;color:var(--smoke);">100%</span>
+                <button class="btn btn-ghost btn-sm" style="height:26px;padding:4px 10px;font-size:11px;">+</button>
+              </div>
+            </div>
+            <div class="pdf-body" id="pdf-body">
+              <!-- Scan overlay -->
+              <div class="scan-overlay" id="scan-overlay">
+                <div class="scan-line" id="scan-line"></div>
+              </div>
+
+              <!-- Risk flags -->
+              <div class="risk-flags" id="risk-flags">
+                <div class="risk-flag" id="flag-1" style="top:28%;">
+                  <div class="risk-flag-marker" onclick="highlightRisk(1)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Reînnoire automată
+                  </div>
+                </div>
+                <div class="risk-flag" id="flag-2" style="top:52%;">
+                  <div class="risk-flag-marker" onclick="highlightRisk(2)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Penalități excesive
+                  </div>
+                </div>
+                <div class="risk-flag" id="flag-3" style="top:72%;">
+                  <div class="risk-flag-marker" onclick="highlightRisk(3)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Transfer IP complet
+                  </div>
+                </div>
+              </div>
+
+              <div class="pdf-content">
+                <h2>CONTRACT DE PRESTĂRI SERVICII IT</h2>
+                <p style="text-align:center;color:#666;font-size:11px;">Nr. CTR-2026-042 · Data: 15 Martie 2026</p>
+
+                <h3>ART. 1 — PĂRȚILE CONTRACTANTE</h3>
+                <p>SC <strong>CONTRIS TECH SRL</strong>, cu sediul în București, Str. Victoriei nr. 42, înregistrată la Registrul Comerțului sub nr. J40/1234/2020, CUI RO12345678, reprezentată prin Director General <strong>Andrei Popescu</strong>, denumită în continuare <em>„Beneficiar"</em>,</p>
+                <p>și SC <strong>IT SERVICES SRL</strong>, cu sediul în Cluj-Napoca, Str. Avram Iancu nr. 18, CUI RO87654321, reprezentată prin Administrator <strong>Mihai Constantin</strong>, denumită în continuare <em>„Prestator"</em>.</p>
+
+                <h3>ART. 2 — DURATA CONTRACTULUI ȘI REÎNNOIREA</h3>
+                <p>Prezentul contract se încheie pe o perioadă de <strong>12 (douăsprezece) luni</strong>, începând cu data de 15 Martie 2026 și până la data de 15 Martie 2027.</p>
+                <p id="risk-text-1"><span class="risk-hl" id="hl-renewal">Contractul se reînnoiește automat pe perioade succesive de 12 luni, dacă niciuna dintre părți nu notifică rezilierea cu cel puțin 90 (nouăzeci) de zile înainte de expirarea termenului în curs.</span> Notificarea se face exclusiv în scris, prin scrisoare recomandată cu confirmare de primire.</p>
+
+                <h3>ART. 3 — OBIECTUL CONTRACTULUI</h3>
+                <p>Prestatorul se obligă să furnizeze servicii de <strong>dezvoltare software, mentenanță sisteme IT și suport tehnic</strong> conform specificațiilor tehnice din Anexa 1 la prezentul contract.</p>
+                <p>Serviciile vor fi prestate la sediul Beneficiarului și/sau remote, în funcție de necesitățile tehnice și acordul mutual al părților, cu respectarea tuturor standardelor de securitate informatică în vigoare.</p>
+
+                <h3>ART. 5 — DREPTURI DE PROPRIETATE INTELECTUALĂ</h3>
+                <p id="risk-text-3"><span class="risk-hl" id="hl-ip">Toate drepturile de proprietate intelectuală asupra lucrărilor, codului sursă, documentației tehnice și oricăror alte materiale create în executarea prezentului contract se transferă integral și definitiv Beneficiarului, fără nicio compensație suplimentară, la data finalizării lucrărilor.</span></p>
+                <p>Prestatorul garantează că lucrările livrate nu încalcă drepturile de proprietate intelectuală ale unor terți.</p>
+
+                <h3>ART. 8 — PENALITĂȚI ȘI DAUNE-INTERESE</h3>
+                <p>În cazul nerespectării termenelor de livrare agreate, Prestatorul datorează penalități de întârziere.</p>
+                <p id="risk-text-2"><span class="risk-hl" id="hl-penalty">Penalitățile de întârziere sunt stabilite la <strong>0.5% (zero virgulă cinci procente) pe zi calendaristică</strong> din valoarea livrabilului nepredat la termen, fără a depăși valoarea totală a contractului. Aceste penalități se aplică automat, fără necesitatea unei notificări prealabile din partea Beneficiarului.</span></p>
+                <p>Beneficiarul are dreptul de a reține penalitățile din factura aferentă perioadei de întârziere.</p>
+
+                <h3>ART. 12 — CONFIDENȚIALITATE</h3>
+                <p>Ambele părți se obligă să păstreze confidențialitatea tuturor informațiilor de natură tehnică, comercială sau organizatorică la care au acces în executarea prezentului contract, pe durata contractului și timp de <strong>5 (cinci) ani</strong> după încetarea acestuia.</p>
+
+                <h3>ART. 15 — SEMNĂTURI</h3>
+                <p style="margin-top:20px;">
+                  Prezentul contract a fost încheiat în două exemplare originale, câte unul pentru fiecare parte.
+                </p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:24px;">
+                  <div>
+                    <p><strong>BENEFICIAR</strong></p>
+                    <p>SC Contris Tech SRL</p>
+                    <p style="margin-top:16px;color:#999;">________________________</p>
+                    <p>Andrei Popescu, Director General</p>
+                  </div>
+                  <div>
+                    <p><strong>PRESTATOR</strong></p>
+                    <p>SC IT Services SRL</p>
+                    <p style="margin-top:16px;color:#999;">________________________</p>
+                    <p>Mihai Constantin, Administrator</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Panel -->
+          <div class="risk-panel">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Analiză AI completă</div>
+                  <div class="card-sub">3 riscuri identificate din 48 clauze</div>
+                </div>
+                <div class="ai-chip">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                AI
+              </div>
+              </div>
+              <div id="risk-list-empty" style="padding:32px;text-align:center;color:var(--slate);">
+                <div style="width:40px;height:40px;margin:0 auto 12px;background:var(--frost);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div style="font-size:13px;font-weight:600;color:var(--smoke);">Apasă „Scanează Riscuri"</div>
+                <div style="font-size:12px;margin-top:4px;">AI va analiza toate clauzele contractului</div>
+              </div>
+              <div id="risk-list" style="display:none;">
+                <div class="risk-item" id="risk-r1">
+                  <div class="risk-num">!</div>
+                  <div>
+                    <div class="risk-title">Reînnoire automată mascată</div>
+                    <div class="risk-desc">Art. 2 — Preaviz de 90 zile pentru reziliere. Expiră în <strong style="color:var(--rose);">30 de zile</strong>. Acționează acum!</div>
+                    <div style="margin-top:6px;display:flex;gap:6px;">
+                      <button class="btn btn-danger btn-sm" onclick="highlightRisk(1)">Evidențiază</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="risk-item" id="risk-r2" style="animation-delay:.15s;">
+                  <div class="risk-num">!</div>
+                  <div>
+                    <div class="risk-title">Penalități peste media pieței</div>
+                    <div class="risk-desc">Art. 8.2 — 0.5%/zi fără notificare prealabilă. Media pieței este 0.1-0.2%/zi. Risc financiar semnificativ.</div>
+                    <div style="margin-top:6px;display:flex;gap:6px;">
+                      <button class="btn btn-danger btn-sm" onclick="highlightRisk(2)">Evidențiază</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="risk-item" id="risk-r3" style="animation-delay:.3s;">
+                  <div class="risk-num warn">~</div>
+                  <div>
+                    <div class="risk-title">Transfer IP integral fără compensație</div>
+                    <div class="risk-desc">Art. 5 — Tot codul sursă transferat fără compensație. Recomandăm negocierea unei clauze de licențiere.</div>
+                    <div style="margin-top:6px;display:flex;gap:6px;">
+                      <button class="btn btn-ghost btn-sm" onclick="highlightRisk(3)">Evidențiază</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk score -->
+            <div class="card" id="risk-score-card" style="display:none;">
+              <div class="card-body" style="padding:16px;">
+                <div style="font-size:12px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Scor risc contract</div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                  <div style="font-family:var(--f-display);font-size:36px;color:var(--amber);">6.2</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--amber);">Risc Moderat-Ridicat</div>
+                    <div style="font-size:11px;color:var(--slate);">Necesită revizuire înainte de semnare</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;font-size:11px;">
+                    <span style="color:var(--smoke);">Clauze riscante</span><span style="font-weight:700;color:var(--rose);">3 / 48</span>
+                  </div>
+                  <div class="prog" style="height:7px;"><div class="prog-fill pf-rose" style="width:12%;"></div></div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:4px;">
+                    <span style="color:var(--smoke);">Conformitate GDPR</span><span style="font-weight:700;color:var(--emerald);">94%</span>
+                  </div>
+                  <div class="prog" style="height:7px;"><div class="prog-fill pf-emerald" style="width:94%;"></div></div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:4px;">
+                    <span style="color:var(--smoke);">Claritate juridică</span><span style="font-weight:700;color:var(--indigo);">78%</span>
+                  </div>
+                  <div class="prog" style="height:7px;"><div class="prog-fill pf-indigo" style="width:78%;"></div></div>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:6px;">
+                  <button class="btn btn-primary btn-sm" style="flex:1;" onclick="switchView('chat')">Întreabă AI</button>
+                  <button class="btn btn-secondary btn-sm" style="flex:1;">Export raport</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommended actions -->
+            <div class="card" id="risk-actions-card" style="display:none;">
+              <div class="card-header" style="padding:12px 16px;">
+                <div class="card-title">Acțiuni recomandate</div>
+              </div>
+              <div style="padding:12px 16px;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;">
+                    <div style="width:6px;height:6px;border-radius:50%;background:var(--rose);flex-shrink:0;"></div>
+                    <span><strong>Urgent:</strong> Trimite notificare reziliere Art. 2 în max. 48h</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;">
+                    <div style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;"></div>
+                    <span>Negociază reducerea penalităților la 0.1%/zi (Art. 8.2)</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;">
+                    <div style="width:6px;height:6px;border-radius:50%;background:var(--indigo);flex-shrink:0;"></div>
+                    <span>Adaugă clauza de licențiere non-exclusivă (Art. 5)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────
+           VIEW: AI CHAT
+      ──────────────────────────── -->
+      <div class="view" id="view-chat">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">AI Asistent contractual</div>
+            <div class="page-title-sub">Interogare inteligentă — CTR-2026-042 · IT Services SRL</div>
+          </div>
+          <div class="page-title-actions">
+            <span class="ai-chip" style="font-size:11px;padding:5px 12px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              Contris AI · Online
+            </span>
+            <button class="btn btn-secondary btn-sm">Altă conversație</button>
+          </div>
+        </div>
+
+        <!-- Full-width chat panel only -->
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;">
+          <div class="chat-panel fade-up" style="flex:1;min-height:0;">
+            <div class="chat-header">
+              <div class="chat-ai-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5CAFE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:var(--ink);">Contris AI</div>
+                <div style="font-size:11px;color:var(--slate);">Caută în toate cele 142 de contracte</div>
+              </div>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+                <div style="width:7px;height:7px;border-radius:50%;background:var(--emerald);animation:pulse 2s ease infinite;"></div>
+                <span style="font-size:11px;color:var(--slate);">Online</span>
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages" style="max-height:none;flex:1;">
+              <div class="msg ai fade-up">
+                <div class="msg-avatar msg-ai-av">AI</div>
+                <div>
+                  <div class="msg-bubble">
+                    Bună ziua! Sunt conectat la toate cele <strong>142 de contracte</strong> din portofoliul vostru. Puteți întreba orice — despre un contract specific, o firmă, un termen sau o clauză.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-suggestions" id="chat-suggestions">
+              <div class="chat-sug" onclick="sendChatMessage('Care este preavizul de reziliere?')">Preaviz reziliere?</div>
+              <div class="chat-sug" onclick="sendChatMessage('Cum sunt calculate penalitățile?')">Penalități?</div>
+              <div class="chat-sug" onclick="sendChatMessage('Când expiră contractul?')">Data expirare?</div>
+              <div class="chat-sug" onclick="sendChatMessage('Care sunt obligațiile de confidențialitate?')">Confidențialitate?</div>
+            </div>
+
+            <div class="chat-input-area">
+              <input class="chat-input" id="chat-input" type="text" placeholder="Întreabă orice despre contractele tale…"
+                onfocus="startDemoTyping()"
+                onclick="startDemoTyping()"
+                onkeydown="if(event.key==='Enter')sendChatFromInput()">
+              <button class="btn btn-primary" id="chat-send-btn" onclick="sendChatFromInput()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────
+           VIEW: DASHBOARD
+      ──────────────────────────── -->
+      <div class="view" id="view-dashboard">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">Dashboard</div>
+            <div class="page-title-sub">Vedere de ansamblu · Ian 2026 – Apr 2026</div>
+          </div>
+          <div class="page-title-actions">
+            <button class="btn btn-secondary btn-sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Perioadă
+            </button>
+            <button class="btn btn-primary btn-sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Export
+            </button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpi-grid fade-up">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">CONTRACTE ACTIVE</div>
+              <div class="kpi-icon ki-indigo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            </div>
+            <div class="kpi-value">142</div>
+            <div class="kpi-delta delta-up">↑ 12.4% față de luna trecută</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">VALOARE TOTALĂ</div>
+              <div class="kpi-icon ki-prussian"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--prussian)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            </div>
+            <div class="kpi-value">2.4M</div>
+            <div class="kpi-delta delta-up">↑ 8.1% RON gestionați</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">EXPIRĂ ÎN 30 ZILE</div>
+              <div class="kpi-icon ki-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            </div>
+            <div class="kpi-value" style="color:var(--amber);">11</div>
+            <div class="kpi-delta delta-down">↑ 3 față de luna trecută</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-label">ANALIZATE DE AI</div>
+              <div class="kpi-icon ki-emerald"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+            </div>
+            <div class="kpi-value" style="color:var(--emerald);">98%</div>
+            <div class="kpi-delta delta-neutral">139 din 142 contracte</div>
+          </div>
+        </div>
+
+        <!-- URGENT ALERTS -->
+        <div class="urgent-section fade-up" style="animation-delay:.1s;">
+          <div class="urgent-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alerte Urgente — Acțiune necesară
+          </div>
+
+          <div class="urgent-item">
+            <div class="countdown-badge" id="countdown-badge">
+              29 ZILE
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-label">
+                <span style="font-weight:600;color:var(--ink);">EnergoFlex SRL — Contract prestări</span>
+                <span style="color:var(--rose);font-weight:700;">Reînnoire automată!</span>
+              </div>
+              <div class="expire-bar">
+                <div class="expire-fill" id="urgency-bar" style="width:95%;"></div>
+              </div>
+              <div style="font-size:11px;color:var(--slate);margin-top:4px;">Notificare reziliere necesară până pe <strong>5 Mai 2026</strong> · Trimis prin: Email + SMS</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <button class="btn btn-danger btn-sm" onclick="showToast('Notificare trimisă prin email și SMS!')">Trimite Alertă</button>
+              <button class="btn btn-ghost btn-sm" onclick="switchView('risk')">Vizualizează</button>
+            </div>
+          </div>
+
+          <div class="urgent-item">
+            <div class="countdown-badge amber-badge">58 ZILE</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-label">
+                <span style="font-weight:600;color:var(--ink);">TechPartner Group — NDA Confidențialitate</span>
+                <span style="color:var(--amber);font-weight:700;">Aproape de expirare</span>
+              </div>
+              <div class="expire-bar">
+                <div class="expire-fill amber" style="width:70%;"></div>
+              </div>
+              <div style="font-size:11px;color:var(--slate);margin-top:4px;">Expiră pe <strong>3 Iunie 2026</strong> · Revizuire recomandată</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <button class="btn btn-secondary btn-sm">Reînnoiește</button>
+              <button class="btn btn-ghost btn-sm">Amână</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts row -->
+        <div class="charts-row fade-up" style="animation-delay:.15s;">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Distribuție contracte / lună</div>
+                <div class="card-sub">Semnat · Negociere · Draft — 2026</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <button class="btn btn-ghost btn-sm">Filtrează</button>
+                <button class="btn btn-ghost btn-sm">2026 ▾</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div style="font-family:var(--f-display);font-size:26px;color:var(--ink);margin-bottom:2px;">142 <span style="font-size:13px;font-family:var(--f-body);color:var(--slate);">contracte</span></div>
+              <div style="font-size:12px;color:var(--emerald);font-weight:600;margin-bottom:16px;">↑ 15.8% · +22 contracte noi în 2026</div>
+              <div class="bar-chart" style="height:120px;">
+                <div class="bc-group"><div class="bc-bar indigo" style="height:55px;"></div><div class="bc-bar indigo-l" style="height:30px;"></div><div class="bc-bar prussian" style="height:20px;"></div></div>
+                <div class="bc-group"><div class="bc-bar indigo" style="height:40px;"></div><div class="bc-bar indigo-l" style="height:22px;"></div><div class="bc-bar prussian" style="height:12px;"></div></div>
+                <div class="bc-group"><div class="bc-bar indigo" style="height:75px;"></div><div class="bc-bar indigo-l" style="height:38px;"></div><div class="bc-bar prussian" style="height:28px;"></div></div>
+                <div class="bc-group"><div class="bc-bar indigo" style="height:90px;"></div><div class="bc-bar indigo-l" style="height:52px;"></div><div class="bc-bar prussian" style="height:36px;"></div></div>
+              </div>
+              <div class="chart-x-labels">
+                <div class="x-label">Ian</div><div class="x-label">Feb</div><div class="x-label">Mar</div>
+                <div class="x-label" style="font-weight:700;color:var(--indigo);">Apr</div>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--indigo)"></div>Semnat</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--indigo-mid)"></div>Negociere</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--prussian)"></div>Draft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Distribuție tip contract</div>
+                <div class="card-sub">Valoare per categorie</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="donut-wrap">
+                <div class="donut">
+                  <svg width="90" height="90" viewBox="0 0 100 100">
+                    <circle class="donut-track" cx="50" cy="50" r="38"/>
+                    <circle class="donut-seg" cx="50" cy="50" r="38" stroke="var(--indigo)" stroke-dasharray="88 151" stroke-dashoffset="0"/>
+                    <circle class="donut-seg" cx="50" cy="50" r="38" stroke="var(--prussian)" stroke-dasharray="45 194" stroke-dashoffset="-88"/>
+                    <circle class="donut-seg" cx="50" cy="50" r="38" stroke="var(--emerald)" stroke-dasharray="28 211" stroke-dashoffset="-133"/>
+                  </svg>
+                  <div class="donut-lbl">
+                    <div class="donut-lbl-val">142</div>
+                    <div class="donut-lbl-sub">total</div>
+                  </div>
+                </div>
+                <div class="donut-stats">
+                  <div class="donut-stat"><div class="donut-stat-dot" style="background:var(--indigo);"></div><span style="color:var(--smoke)"><strong style="color:var(--ink);">59%</strong> Prestări servicii</span></div>
+                  <div class="donut-stat"><div class="donut-stat-dot" style="background:var(--prussian);"></div><span style="color:var(--smoke)"><strong style="color:var(--ink);">30%</strong> Vânzare-cumpărare</span></div>
+                  <div class="donut-stat"><div class="donut-stat-dot" style="background:var(--emerald);"></div><span style="color:var(--smoke)"><strong style="color:var(--ink);">11%</strong> NDA / Altele</span></div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span style="color:var(--smoke);">Prestări servicii</span><span style="font-weight:700;color:var(--indigo);">838,400 RON</span></div>
+                  <div class="prog"><div class="prog-fill pf-indigo" style="width:59%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span style="color:var(--smoke);">Vânzare-cumpărare</span><span style="font-weight:700;color:var(--prussian);">428,600 RON</span></div>
+                  <div class="prog"><div class="prog-fill pf-prussian" style="width:30%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span style="color:var(--smoke);">NDA / Altele</span><span style="font-weight:700;color:var(--emerald);">156,000 RON</span></div>
+                  <div class="prog"><div class="prog-fill pf-emerald" style="width:11%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="bottom-row fade-up" style="animation-delay:.2s;">
+          <!-- Recent alerts -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Alerte recente</div>
+              <button class="btn btn-ghost btn-sm">Vezi toate</button>
+            </div>
+            <div style="padding:10px 12px;display:flex;flex-direction:column;gap:6px;">
+              <div class="alert a-rose" style="padding:9px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div style="font-size:12px;"><strong>EnergoFlex SRL</strong> — Reînnoire automată în 29 zile. Acționează urgent.</div>
+              </div>
+              <div class="alert a-amber" style="padding:9px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <div style="font-size:12px;"><strong>TechPartner Group</strong> — Expirare NDA în 58 zile. Reînnoire recomandată.</div>
+              </div>
+              <div class="alert a-indigo" style="padding:9px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                <div style="font-size:12px;"><strong>AI</strong> — 3 contracte noi analizate. Riscuri identificate în CTR-2026-042.</div>
+              </div>
+              <div class="alert a-emerald" style="padding:9px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>
+                <div style="font-size:12px;"><strong>Romtelecom SA</strong> — Contract semnat cu succes de toate părțile.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent contracts table -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Contracte recente</div>
+              <button class="btn btn-ghost btn-sm">Export</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>CONTRACT</th>
+                  <th>TIP</th>
+                  <th>PROGRES AI</th>
+                  <th>VALOARE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr onclick="switchView('risk')">
+                  <td>
+                    <div style="font-weight:600;font-size:12.5px;">IT Services SRL</div>
+                    <div class="td-muted">CTR-2026-042</div>
+                  </td>
+                  <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div class="prog" style="width:50px;"><div class="prog-fill pf-indigo" style="width:100%"></div></div>
+                      <span style="font-size:10px;font-weight:700;color:var(--indigo);">100%</span>
+                    </div>
+                  </td>
+                  <td style="font-weight:700;font-size:12.5px;">84,000 RON</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:600;font-size:12.5px;">NDA Parteneriat Delta</div>
+                    <div class="td-muted">CTR-2026-041</div>
+                  </td>
+                  <td><span class="badge b-prussian" style="font-size:10px;"><span class="bdot"></span>NDA</span></td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div class="prog" style="width:50px;"><div class="prog-fill pf-prussian" style="width:75%"></div></div>
+                      <span style="font-size:10px;font-weight:700;color:var(--prussian);">75%</span>
+                    </div>
+                  </td>
+                  <td style="font-weight:700;font-size:12.5px;">—</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:600;font-size:12.5px;">Furnizare echipamente</div>
+                    <div class="td-muted">CTR-2026-040</div>
+                  </td>
+                  <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Vânzare</span></td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div class="prog" style="width:50px;"><div class="prog-fill pf-amber" style="width:40%"></div></div>
+                      <span style="font-size:10px;font-weight:700;color:var(--amber);">40%</span>
+                    </div>
+                  </td>
+                  <td style="font-weight:700;font-size:12.5px;">128,500 RON</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight:600;font-size:12.5px;">EnergoFlex SRL</div>
+                    <div class="td-muted">CTR-2026-039</div>
+                  </td>
+                  <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Urgent</span></td>
+                  <td>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div class="prog" style="width:50px;"><div class="prog-fill pf-rose" style="width:100%"></div></div>
+                      <span style="font-size:10px;font-weight:700;color:var(--rose);">!</span>
+                    </div>
+                  </td>
+                  <td style="font-weight:700;font-size:12.5px;color:var(--rose);">48,500 RON</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────
+           VIEW: SIGNATURE
+      ──────────────────────────── -->
+      <div class="view" id="view-signature">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">Semnătură digitală & Arhivare</div>
+            <div class="page-title-sub">CTR-2026-042 · IT Services SRL · Flux complet de semnare</div>
+          </div>
+          <div class="page-title-actions">
+            <span class="badge b-violet" id="sign-status-badge"><span class="bdot"></span>În așteptare semnare</span>
+            <button class="btn btn-prussian btn-sm">Descarcă PDF</button>
+            <button class="btn btn-primary" id="send-sign-btn" onclick="startSignFlow()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Trimite spre semnare
+            </button>
+          </div>
+        </div>
+
+        <div class="sign-layout" style="flex:1;min-height:0;">
+          <!-- Document preview -->
+          <div class="sign-doc fade-up">
+            <div class="pdf-toolbar">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span class="pdf-filename">Contract_IT_Services_SRL_Final_v3.pdf</span>
+              <span id="doc-status-chip" class="badge b-violet" style="margin-left:auto;font-size:10px;"><span class="bdot"></span>Nesemnat</span>
+            </div>
+            <!-- Stamp overlay -->
+            <div class="contract-stamp" id="contract-stamp">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:4px;"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>SEMNAT</div>
+              <div>DIGITAL</div>
+              <div style="font-size:8px;margin-top:2px;opacity:.7;">5 APR 2026</div>
+            </div>
+            <div class="pdf-body" style="overflow-y:auto;">
+              <div class="pdf-content">
+                <h2>CONTRACT DE PRESTĂRI SERVICII IT</h2>
+                <p style="text-align:center;color:#666;font-size:11px;">Nr. CTR-2026-042 · Versiunea Finală v3 · 5 Aprilie 2026</p>
+
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin:16px 0;display:flex;align-items:flex-start;gap:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <div>
+                    <div style="font-size:11px;font-weight:700;color:#065F46;margin-bottom:3px;">Document verificat de Contris AI</div>
+                    <div style="font-size:11px;color:#065F46;">Toate clauzele au fost revizuite. Riscurile au fost adresate în negocierea finală.</div>
+                  </div>
+                </div>
+
+                <h3>ART. 1 — PĂRȚILE CONTRACTANTE</h3>
+                <p>SC <strong>CONTRIS TECH SRL</strong>, București, CUI RO12345678, și SC <strong>IT SERVICES SRL</strong>, Cluj-Napoca, CUI RO87654321.</p>
+
+                <h3>ART. 2 — DURATA ȘI OBIECTUL</h3>
+                <p>Contract pe 12 luni pentru servicii de dezvoltare software și suport tehnic. Valoare: <strong>84,000 RON/an</strong>.</p>
+                <p>Reînnoire cu notificare prealabilă de 30 zile (negociat de la 90 zile).</p>
+
+                <h3>ART. 8 — PENALITĂȚI (REVIZUIT)</h3>
+                <p style="background:#fffbeb;border-left:3px solid #F59E0B;padding:8px 10px;border-radius:4px;">
+                  Penalitățile de întârziere au fost renegociate la <strong>0.1% pe zi</strong>, conform standardelor pieței. (Original: 0.5%/zi)
+                </p>
+
+                <h3>ART. 15 — SEMNĂTURI DIGITALE</h3>
+                <div id="sign-section" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px;">
+                  <div style="border:1.5px dashed var(--steel);border-radius:8px;padding:16px;text-align:center;" id="sign-box-1">
+                    <div style="font-size:11px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">BENEFICIAR</div>
+                    <div style="font-size:12px;font-weight:600;color:var(--ink);">SC Contris Tech SRL</div>
+                    <div style="font-size:11px;color:var(--slate);">Andrei Popescu, Director General</div>
+                    <div style="margin-top:16px;padding:12px;background:var(--arctic);border-radius:6px;min-height:50px;display:flex;align-items:center;justify-content:center;">
+                      <span id="sig-1-placeholder" style="color:var(--slate);font-size:12px;">Semnătură în așteptare…</span>
+                      <span id="sig-1-value" style="display:none;font-family:Georgia,serif;font-style:italic;font-size:22px;color:var(--prussian);">A. Popescu</span>
+                    </div>
+                    <div id="sig-1-meta" style="display:none;font-size:10px;color:var(--slate);margin-top:6px;">✓ Semnat digital · 5 Apr 2026 · 14:32</div>
+                  </div>
+                  <div style="border:1.5px dashed var(--steel);border-radius:8px;padding:16px;text-align:center;" id="sign-box-2">
+                    <div style="font-size:11px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">PRESTATOR</div>
+                    <div style="font-size:12px;font-weight:600;color:var(--ink);">SC IT Services SRL</div>
+                    <div style="font-size:11px;color:var(--slate);">Mihai Constantin, Administrator</div>
+                    <div style="margin-top:16px;padding:12px;background:var(--arctic);border-radius:6px;min-height:50px;display:flex;align-items:center;justify-content:center;">
+                      <span id="sig-2-placeholder" style="color:var(--slate);font-size:12px;">Semnătură în așteptare…</span>
+                      <span id="sig-2-value" style="display:none;font-family:Georgia,serif;font-style:italic;font-size:22px;color:var(--prussian);">M. Constantin</span>
+                    </div>
+                    <div id="sig-2-meta" style="display:none;font-size:10px;color:var(--slate);margin-top:6px;">✓ Semnat digital · 5 Apr 2026 · 15:17</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sign panel -->
+          <div class="sign-panel fade-up" style="animation-delay:.1s;overflow-y:auto;">
+            <!-- Status flow -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Status semnare</div>
+                <div id="sign-overall-badge" class="badge b-violet"><span class="bdot"></span>Nesemnat</div>
+              </div>
+              <div style="padding:16px;">
+                <div class="status-timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot tl-done">✓</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Contract pregătit</div>
+                      <div class="timeline-sub">5 Apr 2026 · 13:45 · Maria Andreescu</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot tl-done" id="tl-sent">✓</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Trimis spre semnare</div>
+                      <div class="timeline-sub" id="tl-sent-sub">5 Apr 2026 · 14:00 · Email trimis</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot tl-active" id="tl-signing">✎</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Semnare în progres</div>
+                      <div class="timeline-sub" id="tl-signing-sub">Așteptare semnătură părți</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot tl-pending" id="tl-complete">4</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Contract finalizat</div>
+                      <div class="timeline-sub" id="tl-complete-sub">Arhivat automat · Status: Activ</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signatories -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Semnatari</div>
+                <span id="signatories-count" class="badge b-violet"><span class="bdot"></span>0/2 semnați</span>
+              </div>
+              <div style="padding:12px 16px;">
+                <div class="signatory-row">
+                  <div class="av av-md av-prussian">AP</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;">Andrei Popescu</div>
+                    <div style="font-size:11px;color:var(--slate);">Director General · Contris Tech SRL</div>
+                  </div>
+                  <div class="signatory-status">
+                    <span id="signatory-1-badge" class="badge b-violet"><span class="bdot"></span>Așteptare</span>
+                  </div>
+                </div>
+                <div class="signatory-row" style="border-bottom:none;padding-bottom:0;">
+                  <div class="av av-md av-indigo">MC</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;">Mihai Constantin</div>
+                    <div style="font-size:11px;color:var(--slate);">Administrator · IT Services SRL</div>
+                  </div>
+                  <div class="signatory-status">
+                    <span id="signatory-2-badge" class="badge b-violet"><span class="bdot"></span>Așteptare</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signing pad -->
+            <div class="card" id="sign-pad-card">
+              <div class="card-header">
+                <div class="card-title">Semnează acum</div>
+                <span class="badge b-indigo"><span class="bdot"></span>eIDAS valid</span>
+              </div>
+              <div style="padding:14px 16px;">
+                <div style="font-size:12px;color:var(--slate);margin-bottom:10px;">Semnătura digitală va fi aplicată conform Regulamentului eIDAS și Legii nr. 455/2001.</div>
+                <div class="sig-canvas-wrap" id="sig-canvas" onclick="drawSignature()">
+                  <div id="sig-placeholder-text" style="color:var(--slate);font-size:13px;">
+                  <div style="margin-bottom:8px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                  Apasă pentru a semna digital
+                  </div>
+                  <div id="sig-drawn" style="display:none;">
+                    <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;color:var(--prussian);">A. Popescu</div>
+                    <div style="font-size:10px;color:var(--slate);margin-top:4px;">Semnat digital · 5 Apr 2026 · 14:32:18</div>
+                  </div>
+                </div>
+                <div style="margin-top:10px;display:flex;gap:8px;">
+                  <button class="btn btn-primary btn-full" id="confirm-sign-btn" onclick="confirmSignature()" style="display:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Confirmă semnătura
+                  </button>
+                  <button class="btn btn-ghost btn-sm" id="clear-sign-btn" onclick="clearSignature()" style="display:none;">Șterge</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Archive info -->
+            <div class="card" id="archive-card" style="display:none;">
+              <div class="card-header">
+                <div class="card-title">Arhivare automată</div>
+                <span class="badge b-emerald"><span class="bdot"></span>Activ</span>
+              </div>
+              <div style="padding:14px 16px;">
+                <div class="alert a-emerald" style="margin-bottom:12px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <div><strong>Contract arhivat în siguranță.</strong> Disponibil permanent în dosarul IT Services SRL.</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="color:var(--slate);">Status</span><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:var(--slate);">Semnat de</span><span style="font-weight:600;">2/2 semnatari</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:var(--slate);">Data semnare</span><span style="font-weight:600;">5 Apr 2026</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:var(--slate);">Locatie arhivă</span><span style="font-weight:600;color:var(--indigo);">Cloud · EU / GDPR</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="color:var(--slate);">Hash verificare</span><span style="font-family:monospace;font-size:10px;color:var(--slate);">SHA-256: 4a7f2b…</span></div>
+                </div>
+                <button class="btn btn-success btn-full" style="margin-top:12px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Descarcă contractul final
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ────────────────────────────
+           VIEW: CONTRACTS LIST
+      ──────────────────────────── -->
+      <div class="view" id="view-contracts">
+        <div class="page-title-row fade-up">
+          <div>
+            <div class="page-title">Toate contractele</div>
+            <div class="page-title-sub">142 contracte active · Actualizat 5 Apr 2026</div>
+          </div>
+          <div class="page-title-actions">
+            <button class="btn btn-secondary btn-sm">Importă</button>
+            <button class="btn btn-primary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Contract nou
+            </button>
+          </div>
+        </div>
+        <div class="card fade-up">
+          <div class="card-header">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div style="padding:5px 12px;background:var(--indigo);color:white;border-radius:var(--r-full);font-size:12px;font-weight:600;">Toate (142)</div>
+              <div style="padding:5px 12px;background:var(--arctic);border:1px solid var(--mist);border-radius:var(--r-full);font-size:12px;color:var(--smoke);">Active (98)</div>
+              <div style="padding:5px 12px;background:var(--arctic);border:1px solid var(--mist);border-radius:var(--r-full);font-size:12px;color:var(--smoke);">Expiră curând (11)</div>
+              <div style="padding:5px 12px;background:var(--arctic);border:1px solid var(--mist);border-radius:var(--r-full);font-size:12px;color:var(--smoke);">Arhivate (33)</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-left:auto;">
+              <div style="display:flex;align-items:center;gap:6px;background:var(--arctic);border:1px solid var(--mist);border-radius:var(--r-md);padding:6px 10px;font-size:12px;color:var(--slate);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Caută…
+              </div>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>CONTRACT</th><th>FIRMĂ</th><th>TIP</th><th>VALOARE</th><th>EXPIRARE</th><th>STATUS</th><th>RISC AI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr onclick="switchView('risk')">
+                <td><div style="font-weight:600;">CTR-2026-042</div><div class="td-muted">IT Services SRL</div></td>
+                <td>IT Services SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">84,000 RON</td>
+                <td><div style="color:var(--rose);font-weight:600;font-size:12px;">15 Mar 2027</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Risc</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-041</div><div class="td-muted">Delta Partner</div></td>
+                <td>Delta Partner SRL</td>
+                <td><span class="badge b-prussian" style="font-size:10px;"><span class="bdot"></span>NDA</span></td>
+                <td style="font-weight:700;">—</td>
+                <td><div style="color:var(--amber);font-weight:600;font-size:12px;">3 Iun 2026</div></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Expiră</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-040</div><div class="td-muted">LogisticPro</div></td>
+                <td>LogisticPro SA</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Vânzare</span></td>
+                <td style="font-weight:700;">128,500 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">20 Iun 2027</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Atenție</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-039</div><div class="td-muted">EnergoFlex</div></td>
+                <td>EnergoFlex SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">48,500 RON</td>
+                <td><div style="color:var(--rose);font-weight:700;font-size:12px;">5 Mai 2026 !</div></td>
+                <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Urgente</span></td>
+                <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Risc</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-038</div><div class="td-muted">Romtelecom</div></td>
+                <td>Romtelecom SA</td>
+                <td><span class="badge b-prussian" style="font-size:10px;"><span class="bdot"></span>Telecomunicații</span></td>
+                <td style="font-weight:700;">156,000 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">15 Dec 2026</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Semnat</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-037</div><div class="td-muted">TechPartner Group</div></td>
+                <td>TechPartner Group SRL</td>
+                <td><span class="badge b-prussian" style="font-size:10px;"><span class="bdot"></span>NDA</span></td>
+                <td style="font-weight:700;">—</td>
+                <td><div style="color:var(--amber);font-weight:600;font-size:12px;">3 Iun 2026</div></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Expiră</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-036</div><div class="td-muted">ConstructPro</div></td>
+                <td>ConstructPro SA</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Vânzare</span></td>
+                <td style="font-weight:700;">230,000 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">1 Feb 2027</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-035</div><div class="td-muted">MediGroup</div></td>
+                <td>MediGroup SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">72,400 RON</td>
+                <td><div style="color:var(--rose);font-weight:600;font-size:12px;">30 Apr 2026</div></td>
+                <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Urgente</span></td>
+                <td><span class="badge b-rose" style="font-size:10px;"><span class="bdot"></span>Risc</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2026-034</div><div class="td-muted">AgroRom</div></td>
+                <td>AgroRom SA</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Furnizare</span></td>
+                <td style="font-weight:700;">195,600 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">10 Oct 2026</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Atenție</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-112</div><div class="td-muted">Softwin</div></td>
+                <td>Softwin SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">360,000 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">31 Dec 2026</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Semnat</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-108</div><div class="td-muted">RetailPrime</div></td>
+                <td>RetailPrime SA</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Vânzare</span></td>
+                <td style="font-weight:700;">87,200 RON</td>
+                <td><div style="color:var(--slate);font-weight:600;font-size:12px;">5 Ian 2026</div></td>
+                <td><span class="badge" style="font-size:10px;background:var(--mist);color:var(--slate);"><span class="bdot" style="background:var(--slate)"></span>Arhivat</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-099</div><div class="td-muted">CyberShield</div></td>
+                <td>CyberShield SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">42,000 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">30 Sep 2026</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-091</div><div class="td-muted">TransEuro</div></td>
+                <td>TransEuro Logistics SRL</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Furnizare</span></td>
+                <td style="font-weight:700;">310,500 RON</td>
+                <td><div style="color:var(--slate);font-weight:600;font-size:12px;">15 Mar 2026</div></td>
+                <td><span class="badge" style="font-size:10px;background:var(--mist);color:var(--slate);"><span class="bdot" style="background:var(--slate)"></span>Arhivat</span></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Atenție</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-087</div><div class="td-muted">BancaFin</div></td>
+                <td>BancaFin SA</td>
+                <td><span class="badge b-prussian" style="font-size:10px;"><span class="bdot"></span>NDA</span></td>
+                <td style="font-weight:700;">—</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">20 Nov 2026</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-080</div><div class="td-muted">GreenEnergy</div></td>
+                <td>GreenEnergy RO SRL</td>
+                <td><span class="badge b-indigo" style="font-size:10px;"><span class="bdot"></span>Prestări</span></td>
+                <td style="font-weight:700;">540,000 RON</td>
+                <td><div style="color:var(--emerald);font-weight:600;font-size:12px;">1 Aug 2027</div></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>Activ</span></td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Atenție</span></td>
+              </tr>
+              <tr>
+                <td><div style="font-weight:600;">CTR-2025-074</div><div class="td-muted">MedTech</div></td>
+                <td>MedTech Solutions SRL</td>
+                <td><span class="badge b-amber" style="font-size:10px;"><span class="bdot"></span>Vânzare</span></td>
+                <td style="font-weight:700;">118,000 RON</td>
+                <td><div style="color:var(--slate);font-weight:600;font-size:12px;">28 Feb 2026</div></td>
+                <td><span class="badge" style="font-size:10px;background:var(--mist);color:var(--slate);"><span class="bdot" style="background:var(--slate)"></span>Arhivat</span></td>
+                <td><span class="badge b-emerald" style="font-size:10px;"><span class="bdot"></span>OK</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- end content -->
+  </div><!-- end main -->
+</div><!-- end app -->
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">Notificare trimisă!</span>
+</div>
+
+<script>
+/* ═══ VIEW MANAGEMENT ═══ */
+const viewMap = {
+  inbox: { title: 'Inbox', demoId: 'demo-inbox' },
+  risk: { title: 'Analiză Riscuri', demoId: 'demo-risk' },
+  chat: { title: 'AI Asistent', demoId: 'demo-chat' },
+  dashboard: { title: 'Dashboard', demoId: 'demo-dashboard' },
+  signature: { title: 'Semnătură', demoId: 'demo-signature' },
+  contracts: { title: 'Contracte', demoId: null }
+};
+
+let currentView = 'dashboard';
+
+function switchView(name) {
+  // Hide all views
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  // Clear nav active
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  document.querySelectorAll('.demo-nav-step').forEach(s => s.classList.remove('active'));
+
+  const viewEl = document.getElementById('view-' + name);
+  if (!viewEl) return;
+  viewEl.classList.add('active');
+
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+
+  const demoEl = viewMap[name] && viewMap[name].demoId ? document.getElementById(viewMap[name].demoId) : null;
+  if (demoEl) demoEl.classList.add('active');
+
+  const topbarTitle = document.getElementById('topbar-current');
+  if (topbarTitle && viewMap[name]) topbarTitle.textContent = viewMap[name].title;
+
+  currentView = name;
+  window.scrollTo(0, 0);
+
+  // Special view init
+  if (name === 'dashboard') initCountdown();
+  if (name === 'signature') resetSignFlow();
+  if (name === 'chat') {
+    demoStep = 0;
+    typingActive = false;
+    if (typingRafId) { clearTimeout(typingRafId); typingRafId = null; }
+    document.getElementById('chat-input').value = '';
+  }
+}
+
+/* ═══ INBOX / IMPORT ═══ */
+const fileNames = [
+  'EnergoFlex_Contract.pdf',
+  'IT_Services_CTR042.pdf',
+  'NDA_Delta_2026.pdf',
+  'Furnizare_Echip.pdf',
+  'Romtelecom_Full.pdf',
+  'TechPartner_NDA.pdf',
+  'LogisticPro_Vnzare.pdf',
+];
+
+const newContracts = [
+  { num: '#040', name: 'LogisticPro SA', code: 'CTR-2026-040', type: 'Vânzare', typeCls: 'b-amber', val: '128,500 RON', exp: '20 iun 2027', expColor: 'var(--emerald)', status: 'Analizat', statusCls: 'b-emerald', risk: 'OK', riskCls: 'b-emerald' },
+  { num: '#041', name: 'Delta Partner SRL', code: 'CTR-2026-041', type: 'NDA', typeCls: 'b-prussian', val: '—', exp: '3 iun 2026', expColor: 'var(--amber)', status: 'Analizat', statusCls: 'b-emerald', risk: 'Atenție', riskCls: 'b-amber' },
+  { num: '#042', name: 'IT Services SRL', code: 'CTR-2026-042', type: 'Prestări', typeCls: 'b-indigo', val: '84,000 RON', exp: '15 mar 2027', expColor: 'var(--emerald)', status: 'Analizat', statusCls: 'b-emerald', risk: 'Risc', riskCls: 'b-rose' },
+  { num: '#043', name: 'TechPartner Group', code: 'CTR-2026-043', type: 'NDA', typeCls: 'b-prussian', val: '—', exp: '1 apr 2027', expColor: 'var(--emerald)', status: 'Analizat', statusCls: 'b-emerald', risk: 'OK', riskCls: 'b-emerald' },
+  { num: '#044', name: 'MedSupply SRL', code: 'CTR-2026-044', type: 'Furnizare', typeCls: 'b-violet', val: '62,000 RON', exp: '30 sep 2026', expColor: 'var(--emerald)', status: 'Analizat', statusCls: 'b-emerald', risk: 'OK', riskCls: 'b-emerald' },
+];
+
+let inboxDemoRunning = false;
+
+function triggerDemoImport() {
+  if (inboxDemoRunning) return;
+  inboxDemoRunning = true;
+
+  const dz = document.getElementById('drop-zone');
+  dz.classList.add('drag-over');
+
+  // Show file items
+  const fileDisplay = document.getElementById('file-items-display');
+  fileDisplay.innerHTML = fileNames.map((fn, i) => `
+    <div class="file-item" id="fi-${i}">
+      <div class="file-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="file-item-name">${fn.replace('📄 ', '')}</div>
+    </div>
+  `).join('');
+
+  fileNames.forEach((_, i) => {
+    setTimeout(() => {
+      const el = document.getElementById('fi-' + i);
+      if (el) el.classList.add('show');
+    }, i * 100);
+  });
+
+  // Start loading
+  setTimeout(() => {
+    dz.classList.remove('drag-over');
+    document.getElementById('dz-loading').classList.add('show');
+
+    // Add rows one by one
+    const tbody = document.getElementById('inbox-table-body');
+    newContracts.forEach((c, i) => {
+      setTimeout(() => {
+        const row = document.createElement('tr');
+        row.className = 'contract-row-new';
+        row.style.animationDelay = '0s';
+        row.onclick = () => switchView('risk');
+        row.innerHTML = `
+          <td><span class="td-muted">${c.num}</span></td>
+          <td>
+            <div style="font-weight:600;">${c.name}</div>
+            <div class="td-muted">${c.code} <span class="ai-extract">AI extrase</span></div>
+          </td>
+          <td><span class="badge ${c.typeCls}"><span class="bdot"></span>${c.type}</span></td>
+          <td style="font-weight:700;">${c.val}</td>
+          <td>
+            <div style="font-weight:600;color:${c.expColor};">${c.exp}</div>
+          </td>
+          <td><span class="badge ${c.statusCls}"><span class="bdot"></span>${c.status}</span></td>
+          <td><span class="badge ${c.riskCls}"><span class="bdot"></span>${c.risk}</span></td>
+          <td><button class="btn btn-ghost btn-sm">Deschide</button></td>
+        `;
+        tbody.insertBefore(row, tbody.firstChild);
+      }, 400 + i * 250);
+    });
+
+    // Finish loading
+    setTimeout(() => {
+      document.getElementById('dz-loading').classList.remove('show');
+      document.getElementById('dz-normal').innerHTML = `
+        <div class="dz-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="dz-title" style="color:var(--emerald);">${fileNames.length} contracte importate cu succes</div>
+        <div class="dz-sub">AI a extras automat datele din toate documentele</div>
+      `;
+      dz.style.borderColor = 'var(--emerald)';
+      dz.style.background = 'var(--emerald-bg)';
+
+      // Show alert
+      const alert = document.getElementById('inbox-alert');
+      if (alert) { alert.style.display = 'flex'; alert.style.animation = 'fadeUp .4s ease both'; }
+
+      showToast('AI a procesat ' + fileNames.length + ' contracte în câteva secunde!');
+      inboxDemoRunning = false;
+    }, 400 + newContracts.length * 250 + 400);
+  }, 1200);
+}
+
+/* ═══ RISK SCAN ═══ */
+let scanRunning = false;
+
+function startRiskScan() {
+  if (scanRunning) return;
+  scanRunning = true;
+
+  const btn = document.getElementById('scan-btn');
+  btn.innerHTML = `<div style="width:13px;height:13px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;"></div> Scanând…`;
+  btn.disabled = true;
+
+  // Scanning line animation
+  const scanLine = document.getElementById('scan-line');
+  const pdfBody = document.getElementById('pdf-body');
+  scanLine.style.display = 'block';
+  let pos = 0;
+  const maxPos = pdfBody.scrollHeight;
+  const scanInterval = setInterval(() => {
+    pos += 8;
+    scanLine.style.top = pos + 'px';
+    if (pos > maxPos) {
+      clearInterval(scanInterval);
+      scanLine.style.display = 'none';
+      showRiskResults();
+    }
+  }, 16);
+}
+
+function showRiskResults() {
+  // Show flags
+  setTimeout(() => { document.getElementById('flag-1').classList.add('show'); showToast('Risc detectat: Reînnoire automată!'); }, 100);
+  setTimeout(() => { document.getElementById('flag-2').classList.add('show'); }, 600);
+  setTimeout(() => { document.getElementById('flag-3').classList.add('show'); }, 1100);
+
+  // Show risk list
+  setTimeout(() => {
+    document.getElementById('pdf-body').classList.add('scanned');
+    document.getElementById('risk-list-empty').style.display = 'none';
+    document.getElementById('risk-list').style.display = 'block';
+    document.getElementById('risk-score-card').style.display = 'block';
+    document.getElementById('risk-actions-card').style.display = 'block';
+
+    const btn = document.getElementById('scan-btn');
+    btn.innerHTML = `<span style="font-size:12px;">✓</span> Scanat`;
+    btn.disabled = false;
+    btn.className = 'btn btn-success btn-sm';
+    scanRunning = false;
+  }, 1400);
+}
+
+function highlightRisk(n) {
+  const ids = { 1: 'hl-renewal', 2: 'hl-penalty', 3: 'hl-ip' };
+  document.querySelectorAll('.risk-hl').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById(ids[n]);
+  if (target) {
+    target.classList.add('active');
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+/* ═══ AI CHAT ═══ */
+/* ══ AUTO-TYPING DEMO ══ */
+const DEMO_SEQUENCES = [
+  'Cu ce firma aveam contractul de marketing?',
+  'Ce clauze aveam în contractul cu EnergoFlex SRL?'
+];
+let typingRafId  = null;
+let demoStep     = 0;   // which demo question is next
+let typingActive = false;
+
+function startDemoTyping() {
+  const input = document.getElementById('chat-input');
+  if (typingActive || input.value.length > 0) return;
+  if (demoStep >= DEMO_SEQUENCES.length) return;
+
+  const question = DEMO_SEQUENCES[demoStep];
+  demoStep++;        // advance immediately so next click queues next question
+  typingActive = true;
+  input.blur();
+
+  let i = 0;
+  function typeNext() {
+    if (i <= question.length) {
+      input.value = question.slice(0, i);
+      i++;
+      typingRafId = setTimeout(typeNext, 45 + Math.random() * 35);
+    } else {
+      typingActive = false;
+    }
+  }
+  typeNext();
+}
+
+const aiResponses = {
+  'Care este preavizul de reziliere?': {
+    text: '**90 de zile calendaristice**, conform **Articolului 7.2** din contract. Preavizul se aplică tuturor notificărilor, inclusiv rezilierii unilaterale. Dacă doriți să reziliați contractul care expiră pe 15 Martie 2027, trebuie să trimiteți notificarea **până pe 14 Decembrie 2026**.',
+    ref: 'Art. 7.2 — „Termenul de preaviz aplicabil tuturor notificărilor prevăzute în prezentul contract este de 90 (nouăzeci) de zile calendaristice."',
+    hlId: 'chat-hl-72'
+  },
+  'Cum sunt calculate penalitățile?': {
+    text: 'Penalitățile de întârziere sunt de **0.5% pe zi calendaristică** din valoarea livrabilului nepredat, conform Art. 8. Aceasta depășește semnificativ media pieței (0.1-0.2%/zi). La o valoare de 84,000 RON, penalitățile pot atinge **420 RON/zi**.',
+    ref: 'Art. 8 — „Penalitățile de întârziere sunt stabilite la 0.5% pe zi calendaristică din valoarea livrabilului nepredat la termen."',
+    hlId: 'chat-hl-penalty'
+  },
+  'Când expiră contractul?': {
+    text: 'Contractul expiră pe **15 Martie 2027** — mai sunt **345 de zile**. Atenție: dacă nu trimiteți notificarea de reziliere cu 90 de zile înainte (până pe 14 Decembrie 2026), contractul se **reînnoiește automat** pe încă 12 luni.',
+    ref: 'Art. 2 — „Contractul se reînnoiește automat pe perioade succesive de 12 luni, dacă niciuna dintre părți nu notifică rezilierea cu cel puțin 90 de zile înainte."',
+    hlId: 'chat-hl-renewal'
+  },
+  'Care sunt obligațiile de confidențialitate?': {
+    text: 'Obligațiile de confidențialitate durează **pe toată durata contractului + 5 ani** după încetare, conform Art. 12. Aceasta include toate informațiile tehnice, comerciale și organizatorice. Obligațiile supraviețuiesc rezilierii contractului.',
+    ref: 'Art. 12 — „Ambele părți se obligă să păstreze confidențialitatea timp de 5 (cinci) ani după încetarea contractului."',
+    hlId: null
+  },
+  'Ce clauze aveam în contractul cu EnergoFlex SRL?': {
+    type: 'clause-highlight',
+    intro: 'Am deschis contractul **CTR-2026-039** cu EnergoFlex SRL. Am identificat **3 clauze importante** pe care le redau mai jos:',
+    contract: { id: 'CTR-2026-039', company: 'EnergoFlex SRL', value: '48,500 RON', date: '5 Mai 2026' },
+    clauses: [
+      {
+        art: 'Art. 2 — Durata și reînnoirea',
+        risk: true,
+        text: 'Contractul se reînnoiește automat pe perioade succesive de 12 luni, dacă niciuna dintre părți nu notifică rezilierea cu cel puțin 90 de zile înainte de expirarea termenului.',
+        label: 'Risc: reînnoire mascată'
+      },
+      {
+        art: 'Art. 8 — Penalități',
+        risk: true,
+        text: 'Penalitățile de întârziere sunt stabilite la 0.5% pe zi calendaristică din valoarea livrabilului, fără a depăși valoarea totală a contractului. Se aplică automat, fără notificare prealabilă.',
+        label: 'Risc: penalitate peste media pieței'
+      },
+      {
+        art: 'Art. 12 — Confidențialitate',
+        risk: false,
+        text: 'Ambele părți se obligă să păstreze confidențialitatea tuturor informațiilor pe durata contractului și 5 ani după încetarea acestuia.',
+        label: 'Standard'
+      }
+    ]
+  },
+  'Cu ce firma aveam contractul de marketing?': {
+    type: 'contract-card',
+    intro: 'Am căutat în toate cele **142 de contracte** din portofoliu. Am găsit **1 contract** cu obiect de marketing digital:',
+    contract: {
+      id: 'CTR-2025-058',
+      company: 'DigitalHub SRL',
+      type: 'Marketing digital',
+      value: '66,000 RON / an',
+      start: '15 Oct 2025',
+      end: '15 Oct 2026',
+      status: 'Activ',
+      statusColor: 'var(--emerald)',
+      clauses: 'Servicii de content marketing, SEO și campanii PPC. Reînnoire automată cu preaviz de 30 de zile.'
+    }
+  }
+};
+
+function findResponse(text) {
+  if (aiResponses[text]) return aiResponses[text];
+  const n = text.trim().normalize('NFC');
+  for (const k of Object.keys(aiResponses)) {
+    if (k.normalize('NFC') === n) return aiResponses[k];
+  }
+  return null;
+}
+
+function sendChatMessage(text) {
+  addUserMessage(text);
+  document.getElementById('chat-suggestions').style.display = 'none';
+  showTyping();
+
+  const resp = findResponse(text);
+  const delay = (resp && (resp.type === 'contract-card' || resp.type === 'clause-highlight')) ? 2500 : 1400 + Math.random() * 400;
+
+  setTimeout(() => {
+    removeTyping();
+    if (resp && resp.type === 'clause-highlight') {
+      addAIClauseHighlight(resp);
+    } else if (resp && resp.type === 'contract-card') {
+      addAIContractCard(resp);
+    } else {
+      const r = resp || {
+        text: 'Am căutat în toate contractele. Puteți fi mai specific — numiți o firmă, un tip de contract sau o clauză?',
+        ref: null, hlId: null
+      };
+      addAIMessage(r.text, r.ref, r.hlId);
+    }
+  }, delay);
+}
+
+function sendChatFromInput() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.blur(); // allow next onclick to re-trigger demo typing
+  sendChatMessage(text);
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg user fade-up';
+  div.innerHTML = `
+    <div class="msg-avatar msg-user-av">MA</div>
+    <div class="msg-bubble">${text}</div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addAIMessage(text, ref, hlId) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ai fade-up';
+
+  // Format bold text
+  const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  let refHtml = '';
+  if (ref) {
+    refHtml = `<div class="msg-ref"><div class="msg-ref-label">Referință în document</div>${ref}</div>`;
+  }
+
+  div.innerHTML = `
+    <div class="msg-avatar msg-ai-av">AI</div>
+    <div>
+      <div class="msg-bubble">${formatted}${refHtml}</div>
+    </div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Highlight in PDF
+  if (hlId) {
+    document.querySelectorAll('.pdf-highlight').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById(hlId);
+    if (el) {
+      el.classList.add('active');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('highlight-label').textContent = 'Evidențiat: ' + hlId.replace('chat-hl-', 'Art. ');
+    }
+  }
+}
+
+function addAIClauseHighlight(resp) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ai fade-up';
+
+  const intro = resp.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const c = resp.contract;
+
+  const clausesHtml = resp.clauses.map(cl => {
+    const isRisk = cl.risk;
+    const itemClass = isRisk ? 'risk-clause' : 'ok-clause';
+    const labelClass = isRisk ? 'risk-clause' : 'ok-clause';
+    return `
+      <div class="ai-clause-item ${itemClass}">
+        ${isRisk ? '<div class="ai-clause-highlight-bar"></div>' : ''}
+        <div class="ai-clause-art">
+          <span>${cl.art}</span>
+          <span class="ai-clause-label ${labelClass}">${cl.label}</span>
+        </div>
+        <div class="ai-clause-text">${cl.text}</div>
+      </div>`;
+  }).join('');
+
+  div.innerHTML = `
+    <div class="msg-avatar msg-ai-av">AI</div>
+    <div style="flex:1;min-width:0;">
+      <div class="msg-bubble" style="max-width:100%;">
+        ${intro}
+        <div class="ai-clause-wrap">
+          <div class="ai-clause-doc">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span><strong>${c.id}</strong> · ${c.company} · ${c.value} · Expiră ${c.date}</span>
+          </div>
+          ${clausesHtml}
+        </div>
+      </div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addAIContractCard(resp) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ai fade-up';
+
+  const intro = resp.intro.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const c = resp.contract;
+
+  div.innerHTML = `
+    <div class="msg-avatar msg-ai-av">AI</div>
+    <div style="flex:1;min-width:0;">
+      <div class="msg-bubble" style="max-width:100%;">
+        ${intro}
+        <div class="ai-contract-card">
+          <div class="ai-cc-header">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <div>
+              <div class="ai-cc-id">${c.id}</div>
+              <div class="ai-cc-name">${c.company}</div>
+              <div class="ai-cc-type">${c.type}</div>
+            </div>
+            <span class="badge b-emerald" style="margin-left:auto;font-size:10px;"><span class="bdot"></span>${c.status}</span>
+          </div>
+          <div class="ai-cc-body">
+            <div class="ai-cc-field"><label>Valoare</label><span>${c.value}</span></div>
+            <div class="ai-cc-field"><label>Perioadă</label><span>${c.start} – ${c.end}</span></div>
+          </div>
+          <div class="ai-cc-clauses">${c.clauses}</div>
+          <div class="ai-cc-footer">
+            <button class="btn btn-primary btn-sm" onclick="switchView('risk')">Deschide contract</button>
+            <button class="btn btn-secondary btn-sm">Descarcă PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+let typingEl = null;
+function showTyping() {
+  const msgs = document.getElementById('chat-messages');
+  typingEl = document.createElement('div');
+  typingEl.className = 'msg ai';
+  typingEl.id = 'typing-indicator';
+  typingEl.innerHTML = `
+    <div class="msg-avatar msg-ai-av">AI</div>
+    <div class="msg-bubble" style="padding:10px 14px;">
+      <div class="typing-indicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+  `;
+  msgs.appendChild(typingEl);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function removeTyping() {
+  const ti = document.getElementById('typing-indicator');
+  if (ti) ti.remove();
+}
+
+/* ═══ DASHBOARD COUNTDOWN ═══ */
+let countdownInterval = null;
+function initCountdown() {
+  let days = 29;
+  if (countdownInterval) clearInterval(countdownInterval);
+  // Just animate the badge on load for demo effect
+  const badge = document.getElementById('countdown-badge');
+  if (badge) badge.textContent = '⏱ ' + days + ' ZILE';
+}
+
+/* ═══ SIGNATURE FLOW ═══ */
+let signStep = 0;
+let signatureDrawn = false;
+
+function resetSignFlow() {
+  signStep = 0;
+  signatureDrawn = false;
+
+  // Reset UI
+  const els = ['sig-drawn','sig-1-value','sig-1-meta','sig-2-value','sig-2-meta','archive-card'];
+  els.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+
+  const placeholders = ['sig-placeholder-text','sig-1-placeholder','sig-2-placeholder'];
+  placeholders.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'block'; });
+
+  const sigCanvas = document.getElementById('sig-canvas');
+  if (sigCanvas) { sigCanvas.classList.remove('signed'); }
+
+  ['confirm-sign-btn','clear-sign-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // Reset badges
+  document.getElementById('sign-status-badge').className = 'badge b-violet';
+  document.getElementById('sign-status-badge').innerHTML = '<span class="bdot"></span>În așteptare semnare';
+  document.getElementById('sign-overall-badge').className = 'badge b-violet';
+  document.getElementById('sign-overall-badge').innerHTML = '<span class="bdot"></span>Nesemnat';
+  document.getElementById('doc-status-chip').className = 'badge b-violet';
+  document.getElementById('doc-status-chip').innerHTML = '<span class="bdot"></span>Nesemnat';
+  document.getElementById('signatories-count').className = 'badge b-violet';
+  document.getElementById('signatories-count').innerHTML = '<span class="bdot"></span>0/2 semnați';
+  ['signatory-1-badge','signatory-2-badge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.className = 'badge b-violet'; el.innerHTML = '<span class="bdot"></span>Așteptare'; }
+  });
+
+  // Reset timeline
+  document.getElementById('tl-sent').className = 'timeline-dot tl-done';
+  document.getElementById('tl-signing').className = 'timeline-dot tl-active';
+  document.getElementById('tl-complete').className = 'timeline-dot tl-pending';
+  document.getElementById('tl-complete').textContent = '4';
+
+  // Reset sign boxes
+  ['sign-box-1','sign-box-2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.style.borderColor = ''; el.style.background = ''; }
+  });
+
+  // Reset send button
+  const sendBtn = document.getElementById('send-sign-btn');
+  if (sendBtn) { sendBtn.style.display = ''; sendBtn.disabled = false; sendBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Trimite spre semnare`; }
+
+  document.getElementById('contract-stamp').classList.remove('show');
+  document.getElementById('sign-pad-card').style.display = '';
+}
+
+function startSignFlow() {
+  const sendBtn = document.getElementById('send-sign-btn');
+  sendBtn.innerHTML = '<div style="width:13px;height:13px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;"></div> Trimite...';
+  sendBtn.disabled = true;
+
+  setTimeout(() => {
+    sendBtn.innerHTML = '✓ Trimis';
+    showToast('Cerere de semnare trimisă prin email tuturor semnatarilor!');
+
+    document.getElementById('sign-status-badge').className = 'badge b-indigo';
+    document.getElementById('sign-status-badge').innerHTML = '<span class="bdot"></span>Trimis spre semnare';
+    document.getElementById('tl-sent-sub').textContent = '5 Apr 2026 · 14:00 · Email trimis la ambele părți';
+  }, 1500);
+}
+
+function drawSignature() {
+  if (signatureDrawn) return;
+  signatureDrawn = true;
+
+  document.getElementById('sig-placeholder-text').style.display = 'none';
+  document.getElementById('sig-drawn').style.display = 'block';
+
+  const sigCanvas = document.getElementById('sig-canvas');
+  sigCanvas.classList.add('signed');
+
+  document.getElementById('confirm-sign-btn').style.display = 'flex';
+  document.getElementById('clear-sign-btn').style.display = 'inline-flex';
+}
+
+function clearSignature() {
+  signatureDrawn = false;
+  document.getElementById('sig-placeholder-text').style.display = 'block';
+  document.getElementById('sig-drawn').style.display = 'none';
+  document.getElementById('sig-canvas').classList.remove('signed');
+  document.getElementById('confirm-sign-btn').style.display = 'none';
+  document.getElementById('clear-sign-btn').style.display = 'none';
+}
+
+function confirmSignature() {
+  // Animate signature for beneficiary
+  document.getElementById('sig-1-placeholder').style.display = 'none';
+  document.getElementById('sig-1-value').style.display = 'inline';
+  document.getElementById('sig-1-meta').style.display = 'block';
+  document.getElementById('sign-box-1').style.borderColor = 'var(--emerald)';
+  document.getElementById('sign-box-1').style.borderStyle = 'solid';
+  document.getElementById('sign-box-1').style.background = 'var(--emerald-bg)';
+
+  // Update badge
+  document.getElementById('signatory-1-badge').className = 'badge b-emerald';
+  document.getElementById('signatory-1-badge').innerHTML = '<span class="bdot"></span>Semnat ✓';
+  document.getElementById('signatories-count').className = 'badge b-amber';
+  document.getElementById('signatories-count').innerHTML = '<span class="bdot"></span>1/2 semnați';
+
+  document.getElementById('sig-pad-card') && (document.getElementById('sign-pad-card').style.opacity = '.5');
+
+    showToast('Semnătură Andrei Popescu confirmată!');
+
+  // Auto-sign second party after 2s
+  setTimeout(() => {
+    document.getElementById('sig-2-placeholder').style.display = 'none';
+    document.getElementById('sig-2-value').style.display = 'inline';
+    document.getElementById('sig-2-meta').style.display = 'block';
+    document.getElementById('sign-box-2').style.borderColor = 'var(--emerald)';
+    document.getElementById('sign-box-2').style.borderStyle = 'solid';
+    document.getElementById('sign-box-2').style.background = 'var(--emerald-bg)';
+
+    document.getElementById('signatory-2-badge').className = 'badge b-emerald';
+    document.getElementById('signatory-2-badge').innerHTML = '<span class="bdot"></span>Semnat ✓';
+    document.getElementById('signatories-count').className = 'badge b-emerald';
+    document.getElementById('signatories-count').innerHTML = '<span class="bdot"></span>2/2 semnați';
+
+    // Final status
+    setTimeout(() => completeSignFlow(), 600);
+  }, 2000);
+}
+
+function completeSignFlow() {
+  // Update all status
+  document.getElementById('sign-status-badge').className = 'badge b-emerald';
+  document.getElementById('sign-status-badge').innerHTML = '<span class="bdot"></span>Semnat · Activ';
+  document.getElementById('sign-overall-badge').className = 'badge b-emerald';
+  document.getElementById('sign-overall-badge').innerHTML = '<span class="bdot"></span>Semnat complet';
+  document.getElementById('doc-status-chip').className = 'badge b-emerald';
+  document.getElementById('doc-status-chip').innerHTML = '<span class="bdot"></span>Semnat Digital ✓';
+
+  // Timeline complete
+  document.getElementById('tl-signing').className = 'timeline-dot tl-done';
+  document.getElementById('tl-signing').textContent = '✓';
+  document.getElementById('tl-signing-sub').textContent = '5 Apr 2026 · 15:17 · Ambele semnături confirmate';
+  document.getElementById('tl-complete').className = 'timeline-dot tl-done';
+  document.getElementById('tl-complete').textContent = '✓';
+  document.getElementById('tl-complete-sub').textContent = 'Arhivat · Status: Activ · CTR-2026-042';
+
+  // Show stamp
+  document.getElementById('contract-stamp').classList.add('show');
+
+  // Show archive panel
+  document.getElementById('sign-pad-card').style.display = 'none';
+  document.getElementById('archive-card').style.display = 'block';
+
+  showToast('Contract semnat și arhivat. Status: ACTIV');
+}
+
+/* ═══ TOAST ═══ */
+let toastTimeout = null;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  toast.classList.add('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+/* ═══ INIT ═══ */
+switchView('dashboard');
+initCountdown();
+
+// Keyboard shortcuts for demo
+document.addEventListener('keydown', (e) => {
+  if (e.key === '1') switchView('inbox');
+  if (e.key === '2') switchView('risk');
+  if (e.key === '3') switchView('chat');
+  if (e.key === '4') switchView('dashboard');
+  if (e.key === '5') switchView('signature');
+});
+</script>
+</body>
+</html>

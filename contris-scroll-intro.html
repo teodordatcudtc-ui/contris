@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contris – Intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  background: #F4F5F9;
+  font-family: 'Inter', sans-serif;
+}
+
+.stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: #F4F5F9;
+}
+
+/* Top & bottom fade — white */
+.fade-top, .fade-bot {
+  position: absolute; left: 0; right: 0;
+  height: 200px; z-index: 5; pointer-events: none;
+}
+.fade-top { top: 0;    background: linear-gradient(to bottom, #F4F5F9 0%, transparent 100%); }
+.fade-bot { bottom: 0; background: linear-gradient(to top,   #F4F5F9 0%, transparent 100%); }
+
+/* Side fade */
+.fade-left, .fade-right {
+  position: absolute; top: 0; bottom: 0;
+  width: 140px; z-index: 5; pointer-events: none;
+}
+.fade-left  { left: 0;  background: linear-gradient(to right, #F4F5F9 0%, transparent 100%); }
+.fade-right { right: 0; background: linear-gradient(to left,  #F4F5F9 0%, transparent 100%); }
+
+/* ──── TRACK ──── */
+.track-wrap {
+  width: 680px; height: 100vh;
+  overflow: hidden; position: relative;
+}
+.track {
+  display: flex; flex-direction: column;
+  gap: 10px; width: 100%;
+  will-change: transform;
+}
+
+/* ──── CONTRACT CARD ──── */
+.ccard {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: border-color .4s ease, box-shadow .4s ease, background .4s ease;
+}
+
+/* Spotlight state — indigo accent */
+.ccard.lit {
+  background: #FFFFFF;
+  border-color: #4355F5;
+  box-shadow:
+    0 0 0 3px rgba(67,85,245,0.12),
+    0 8px 32px rgba(67,85,245,0.14),
+    0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ci {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ci-b { background: #EEF0FE; }
+.ci-a { background: #FEF9EC; }
+.ci-r { background: #FEF2F2; }
+.ci-g { background: #ECFDF5; }
+.ci-s { background: #F3F4F6; }
+
+.cm { flex: 1; min-width: 0; }
+.c-id   { font-size: 10px; font-weight: 700; color: #9CA3AF; letter-spacing: .08em; margin-bottom: 2px; }
+.c-name { font-size: 13.5px; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-type { font-size: 11px; color: #9CA3AF; margin-top: 2px; }
+
+.cr { text-align: right; flex-shrink: 0; }
+.c-val  { font-size: 13.5px; font-weight: 700; color: #1A1D2E; }
+.c-date { font-size: 10.5px; color: #9CA3AF; margin-top: 3px; }
+.cbadge {
+  display: inline-block; margin-top: 6px;
+  padding: 2px 8px; border-radius: 99px;
+  font-size: 9.5px; font-weight: 700; letter-spacing: .04em;
+}
+.ba { background: #D1FAE5; color: #065F46; }
+.be { background: #FEF3C7; color: #92400E; }
+.br { background: #FEE2E2; color: #991B1B; }
+.bs { background: #F3F4F6; color: #6B7280; }
+
+/* ──── ZOOM OVERLAY ──── */
+.zoom-panel {
+  position: fixed;
+  z-index: 50;
+  background: #FFFFFF;
+  border-radius: 12px;
+  pointer-events: none;
+  /* transition applied via JS for precise timing */
+}
+
+/* ──── REPLAY ──── */
+.replay {
+  position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+  z-index: 60; padding: 10px 28px;
+  background: #4355F5; border: none;
+  border-radius: 99px; color: #fff;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: .04em; cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s ease, background .2s;
+  box-shadow: 0 4px 14px rgba(67,85,245,0.35);
+}
+.replay:hover { background: #3445E0; }
+.replay.on { opacity: 1; pointer-events: auto; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="fade-top"></div>
+  <div class="fade-bot"></div>
+  <div class="fade-left"></div>
+  <div class="fade-right"></div>
+
+  <div class="track-wrap">
+    <div class="track" id="track"></div>
+  </div>
+</div>
+
+<button class="replay" id="replayBtn" onclick="startAnimation()">↺ &nbsp;Reia animația</button>
+
+<script>
+const DATA = [
+  { id:'CTR-2026-042', name:'IT Services SRL',        type:'Prestări servicii IT',      val:'84,000 RON',  date:'15 Mar 2027', s:'ba', ci:'ci-b' },
+  { id:'CTR-2026-041', name:'Delta Partner SRL',       type:'NDA Confidențialitate',     val:'—',           date:'3 Iun 2026',  s:'be', ci:'ci-s' },
+  { id:'CTR-2026-040', name:'LogisticPro SA',          type:'Contract vânzare',          val:'128,500 RON', date:'20 Iun 2027', s:'ba', ci:'ci-a' },
+  { id:'CTR-2026-039', name:'EnergoFlex SRL',          type:'Prestări servicii',         val:'48,500 RON',  date:'5 Mai 2026',  s:'br', ci:'ci-r' },
+  { id:'CTR-2026-038', name:'Romtelecom SA',           type:'Telecomunicații',           val:'156,000 RON', date:'15 Dec 2026', s:'ba', ci:'ci-b' },
+  { id:'CTR-2026-037', name:'TechPartner Group',       type:'NDA Confidențialitate',     val:'—',           date:'3 Iun 2026',  s:'be', ci:'ci-s' },
+  { id:'CTR-2026-036', name:'ConstructPro SA',         type:'Contract vânzare',          val:'230,000 RON', date:'1 Feb 2027',  s:'ba', ci:'ci-a' },
+  { id:'CTR-2026-035', name:'MediGroup SRL',           type:'Prestări servicii',         val:'72,400 RON',  date:'30 Apr 2026', s:'br', ci:'ci-r' },
+  { id:'CTR-2026-034', name:'AgroRom SA',              type:'Contract furnizare',        val:'195,600 RON', date:'10 Oct 2026', s:'ba', ci:'ci-g' },
+  { id:'CTR-2026-033', name:'Softwin SRL',             type:'Prestări servicii IT',      val:'360,000 RON', date:'31 Dec 2026', s:'ba', ci:'ci-b' },
+  { id:'CTR-2026-032', name:'RetailPrime SA',          type:'Contract vânzare',          val:'87,200 RON',  date:'5 Ian 2026',  s:'bs', ci:'ci-a' },
+  { id:'CTR-2026-031', name:'CyberShield SRL',         type:'Securitate IT',             val:'42,000 RON',  date:'30 Sep 2026', s:'ba', ci:'ci-b' },
+  { id:'CTR-2026-030', name:'TransEuro Logistics',     type:'Contract furnizare',        val:'310,500 RON', date:'15 Mar 2026', s:'bs', ci:'ci-s' },
+  { id:'CTR-2026-029', name:'BancaFin SA',             type:'NDA Bancar',                val:'—',           date:'20 Nov 2026', s:'ba', ci:'ci-g' },
+  { id:'CTR-2026-028', name:'GreenEnergy RO SRL',      type:'Prestări servicii',         val:'540,000 RON', date:'1 Aug 2027',  s:'ba', ci:'ci-g' },
+  { id:'CTR-2026-027', name:'MedTech Solutions',       type:'Contract vânzare',          val:'118,000 RON', date:'28 Feb 2026', s:'bs', ci:'ci-r' },
+  { id:'CTR-2025-112', name:'AlphaConsult SRL',        type:'Consultanță',               val:'55,000 RON',  date:'30 Iun 2026', s:'be', ci:'ci-b' },
+  { id:'CTR-2025-108', name:'Europrint SA',            type:'Contract furnizare',        val:'29,800 RON',  date:'15 Sep 2026', s:'ba', ci:'ci-a' },
+  { id:'CTR-2025-104', name:'DataVault SRL',           type:'Cloud & Hosting',           val:'96,000 RON',  date:'1 Ian 2027',  s:'ba', ci:'ci-b' },
+  { id:'CTR-2025-099', name:'SmartBuild SRL',          type:'Contract vânzare',          val:'412,000 RON', date:'10 Oct 2025', s:'bs', ci:'ci-a' },
+  { id:'CTR-2025-095', name:'ProFleet SA',             type:'Contract leasing',          val:'144,000 RON', date:'5 Aug 2026',  s:'ba', ci:'ci-g' },
+  { id:'CTR-2025-091', name:'NetGuard SRL',            type:'Securitate IT',             val:'38,400 RON',  date:'1 Dec 2026',  s:'ba', ci:'ci-b' },
+  { id:'CTR-2025-087', name:'FarmaCont SA',            type:'Prestări servicii',         val:'210,000 RON', date:'20 Mar 2026', s:'bs', ci:'ci-r' },
+  { id:'CTR-2025-082', name:'UrbanDev SRL',            type:'Contract furnizare',        val:'680,000 RON', date:'15 Nov 2026', s:'ba', ci:'ci-a' },
+  { id:'CTR-2025-077', name:'LegalTech SRL',           type:'Consultanță juridică',      val:'24,000 RON',  date:'30 Apr 2026', s:'be', ci:'ci-s' },
+  { id:'CTR-2025-072', name:'AquaRom SA',              type:'Contract furnizare',        val:'155,000 RON', date:'10 Iun 2026', s:'ba', ci:'ci-g' },
+  { id:'CTR-2025-068', name:'TaxConsult SRL',          type:'Consultanță fiscală',       val:'18,000 RON',  date:'31 Dec 2025', s:'bs', ci:'ci-s' },
+  { id:'CTR-2025-063', name:'MegaStore SA',            type:'Contract vânzare',          val:'920,000 RON', date:'1 Mar 2027',  s:'ba', ci:'ci-a' },
+  { id:'CTR-2025-058', name:'DigitalHub SRL',          type:'Marketing digital',         val:'66,000 RON',  date:'15 Oct 2026', s:'ba', ci:'ci-b' },
+  { id:'CTR-2025-054', name:'RoboSystems SRL',         type:'Automatizare industrială',  val:'280,000 RON', date:'20 Ian 2027', s:'ba', ci:'ci-g' },
+];
+
+const ICONS = {
+  'ci-b': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+  'ci-a': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  'ci-r': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  'ci-g': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  'ci-s': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+};
+const SLABELS = { ba:'Activ', be:'Expiră curând', br:'Risc ridicat', bs:'Arhivat' };
+
+function makeCard(d, mark) {
+  const el = document.createElement('div');
+  el.className = 'ccard' + (mark ? ' target' : '');
+  el.innerHTML = `
+    <div class="ci ${d.ci}">${ICONS[d.ci]}</div>
+    <div class="cm">
+      <div class="c-id">${d.id}</div>
+      <div class="c-name">${d.name}</div>
+      <div class="c-type">${d.type}</div>
+    </div>
+    <div class="cr">
+      <div class="c-val">${d.val}</div>
+      <div class="c-date">Exp: ${d.date}</div>
+      <span class="cbadge ${d.s}">${SLABELS[d.s]}</span>
+    </div>`;
+  return el;
+}
+
+const track     = document.getElementById('track');
+const replayBtn = document.getElementById('replayBtn');
+
+// Stop on EnergoFlex (index 3) — red risk card, dramatic
+const TARGET_IDX = 3;
+const TARGET_REP = 3;   // which repetition to land on
+
+let rafId    = null;
+let cardH    = 0;
+let targetPx = 0;
+let startTs  = 0;
+
+/* Timing (ms) — slower, more gradual */
+const T_ACCEL = 4500;   // ramp up slowly over 4.5 s
+const T_PEAK  = 2000;   // hold max speed for 2 s
+const T_DECEL = 900;    // snap stop
+
+/* Max speed — kept moderate so blur isn't instant */
+const V_MAX    = 28;    // px / frame
+const BLUR_MAX = 12;    // px
+
+function easeIn(t)  { return t * t * t; }         // cubic ease in
+function easeOut(t) { return 1-(1-t)*(1-t)*(1-t); }// cubic ease out
+
+/* distance traversed during accel (integral of v_max*t^3 over [0,1] * frames) */
+function distAccel() {
+  const frames = T_ACCEL / 1000 * 60;
+  return V_MAX / 4 * frames;  // ∫₀¹ t³ dt = 1/4
+}
+function distPeak() {
+  const frames = T_PEAK / 1000 * 60;
+  return V_MAX * frames;
+}
+
+function buildTrack() {
+  track.innerHTML = '';
+  const REPS = 5;
+  for (let r = 0; r < REPS; r++) {
+    DATA.forEach((d, i) => {
+      track.appendChild(makeCard(d, r === TARGET_REP && i === TARGET_IDX));
+    });
+  }
+}
+
+function measure() {
+  const c = track.children[0];
+  return c ? c.getBoundingClientRect().height + 10 : 80;
+}
+
+function computeTargetPx() {
+  const idx = TARGET_REP * DATA.length + TARGET_IDX;
+  const top  = idx * cardH;
+  const center = top + (cardH - 10) / 2;
+  return center - window.innerHeight / 2;
+}
+
+function reset() {
+  track.style.transform = 'translateY(0)';
+  track.style.filter    = 'none';
+  replayBtn.classList.remove('on');
+  track.querySelectorAll('.ccard').forEach(c => c.classList.remove('lit'));
+  // Remove any zoom panels from previous runs
+  document.querySelectorAll('.zoom-panel').forEach(p => p.remove());
+}
+
+function startAnimation() {
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  buildTrack();
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    cardH      = measure();
+    targetPx   = computeTargetPx();
+    reset();
+    startTs = 0;
+    rafId = requestAnimationFrame(animate);
+  }));
+}
+
+function animate(ts) {
+  if (!startTs) startTs = ts;
+  const elapsed = ts - startTs;
+
+  const da = distAccel();
+  const dp = distPeak();
+
+  const t_peak_start  = T_ACCEL;
+  const t_decel_start = T_ACCEL + T_PEAK;
+  const t_end         = T_ACCEL + T_PEAK + T_DECEL;
+
+  let offset, blur;
+
+  if (elapsed < t_peak_start) {
+    /* ACCELERATE — slow at first, gradually gets fast */
+    const t = elapsed / T_ACCEL;
+    offset = da * easeIn(t);
+    blur   = BLUR_MAX * 0.25 * easeIn(t);
+
+  } else if (elapsed < t_decel_start) {
+    /* PEAK — constant max speed + full blur */
+    const t = (elapsed - t_peak_start) / T_PEAK;
+    offset = da + dp * t;
+    blur   = BLUR_MAX * (0.3 + 0.7 * t);
+
+  } else if (elapsed < t_end) {
+    /* DECELERATE — hard stop onto target */
+    const t = (elapsed - t_decel_start) / T_DECEL;
+    offset = da + dp + (targetPx - da - dp) * easeOut(t);
+    blur   = BLUR_MAX * (1 - t);
+
+  } else {
+    /* DONE */
+    apply(targetPx, 0);
+    onStopped();
+    return;
+  }
+
+  apply(offset, blur);
+  rafId = requestAnimationFrame(animate);
+}
+
+function apply(off, blur) {
+  track.style.transform = `translateY(${-off}px)`;
+  track.style.filter    = blur > 0.3 ? `blur(${blur.toFixed(2)}px)` : 'none';
+}
+
+function onStopped() {
+  rafId = null;
+  track.style.filter = 'none';
+
+  const target = track.querySelector('.target');
+  if (target) target.classList.add('lit');
+
+  // After a short pause to let the focus "land", zoom the card to fill screen
+  setTimeout(() => zoomToWhite(target), 650);
+}
+
+function zoomToWhite(cardEl) {
+  if (!cardEl) return;
+
+  const rect = cardEl.getBoundingClientRect();
+
+  // Create white panel starting at card's exact position & size
+  const panel = document.createElement('div');
+  panel.className = 'zoom-panel';
+  Object.assign(panel.style, {
+    left:   rect.left + 'px',
+    top:    rect.top  + 'px',
+    width:  rect.width  + 'px',
+    height: rect.height + 'px',
+    transition: 'none',
+  });
+  document.body.appendChild(panel);
+
+  // Force reflow so the starting position is painted before transition
+  panel.getBoundingClientRect();
+
+  // Apply transition and expand to full screen
+  Object.assign(panel.style, {
+    transition: 'left .42s cubic-bezier(0.4,0,0.15,1), top .42s cubic-bezier(0.4,0,0.15,1), width .42s cubic-bezier(0.4,0,0.15,1), height .42s cubic-bezier(0.4,0,0.15,1), border-radius .42s cubic-bezier(0.4,0,0.15,1)',
+    left:         '0px',
+    top:          '0px',
+    width:        '100vw',
+    height:       '100vh',
+    borderRadius: '0px',
+  });
+
+  // Show replay after zoom completes
+  setTimeout(() => replayBtn.classList.add('on'), 900);
+}
+
+window.addEventListener('load', () => setTimeout(startAnimation, 500));
+</script>
+</body>
+</html>

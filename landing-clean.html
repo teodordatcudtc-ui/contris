@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contris - Acces prioritar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f9fd;--text:#10172a;--muted:#54607c;--line:#dbe3f4;--primary:#3558f3;--hero1:#0f60bf;--hero2:#0a4a93}
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:"Geist",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    .container{width:min(1120px,92vw);margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:40;background:rgba(247,249,253,.86);backdrop-filter:blur(8px);border-bottom:1px solid #e5ebf8}
+    .topbar-inner{height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:700;font-size:17px;color:#24324f;text-decoration:none}
+    .top-links{display:flex;gap:14px;flex-wrap:wrap}
+    .top-links a{font-size:14px;color:#5a6785;text-decoration:none}
+    .top-links a:hover{color:#24324f}
+    .hero{color:#f4f8ff;background:linear-gradient(rgba(8,34,78,.5),rgba(8,34,78,.58)),url("assets/hero-bg.jpg") center/cover no-repeat,radial-gradient(1200px 500px at 50% 20%,rgba(172,223,255,.28),transparent 60%),linear-gradient(180deg,var(--hero1),var(--hero2) 70%,#0a4a93);padding:70px 0 80px;text-align:center}
+    .hero h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(44px,6vw,86px);font-weight:400;line-height:1;letter-spacing:-.02em;margin-bottom:14px}
+    .hero p{max-width:760px;margin:0 auto 24px;color:#d9e7ff;font-size:clamp(16px,2vw,22px)}
+    .signup{display:flex;gap:10px;align-items:center;width:min(640px,100%);margin:0 auto;padding:8px;border-radius:999px;background:#fff;box-shadow:0 20px 45px rgba(8,31,86,.2)}
+    .signup input{flex:1;border:0;outline:none;font-size:16px;padding:0 16px;height:48px;color:#1a2438;background:transparent}
+    .signup button{border:0;border-radius:999px;background:#1b1f2c;color:#fff;font-weight:700;font-size:15px;height:48px;padding:0 24px;cursor:pointer}
+    .hero-offer{margin-top:10px;font-size:15px;line-height:1.35;color:#fff;font-weight:800;letter-spacing:.01em;text-shadow:0 2px 10px rgba(0,0,0,.25)}
+    .social-proof{margin-top:14px;display:inline-flex;align-items:center;gap:12px;color:#e8f0ff;font-weight:500}
+    .avatars{display:flex}.avatar{width:30px;height:30px;border-radius:50%;margin-left:-7px;border:2px solid rgba(255,255,255,.8);object-fit:cover;background:#cddcff}.avatar:first-child{margin-left:0}
+    .hero-media{margin-top:36px}
+    .hero-video{width:100%;display:block;border-radius:18px;border:1px solid rgba(234,242,255,.6);box-shadow:0 20px 60px rgba(6,27,71,.25);background:#000;aspect-ratio:16/9;max-height:620px;object-fit:cover}
+    section{padding:74px 0;border-bottom:1px solid #e8eef9}
+    h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.01em;margin-bottom:12px}
+    .lead{color:var(--muted);font-size:18px;max-width:840px;margin-bottom:30px}
+    .flow{display:flex;flex-direction:column;gap:42px}
+    .flow-step{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+    .flow-step.reverse .flow-media{order:2}
+    .flow-step.reverse .flow-copy{order:1}
+    .flow-media img{width:100%;display:block;border-radius:16px;border:1px solid var(--line);background:#e9effa}
+    .flow-copy h3{font-size:34px;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px;font-family:"Instrument Serif",Georgia,serif}
+    .flow-copy p{color:var(--muted);margin-bottom:14px}
+    .flow-list{display:flex;flex-direction:column;gap:8px}
+    .flow-list span{display:block;background:#edf2ff;color:#3f53a0;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600}
+    .step-no{width:34px;height:34px;border:2px solid #da4f4f;color:#a63838;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+    .demo-video{margin-top:18px;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:#0a0c12}
+    .demo-video video{width:100%;display:block;aspect-ratio:16/9;max-height:640px;object-fit:cover;background:#000}
+    .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:6px}.two-cols h4{font-size:23px;margin-bottom:8px;letter-spacing:-.01em}.two-cols ul{color:var(--muted);padding-left:18px}.two-cols li{margin-bottom:8px}
+    .faq{display:flex;flex-direction:column;gap:12px}
+    .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+    .faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"▾";font-size:16px;color:#4f5f84;transition:transform .2s ease}
+    .faq details[open] summary::after{transform:rotate(180deg)}
+    .faq details p{color:var(--muted);margin-top:10px}
+    .cta{padding:72px 0;text-align:center;background:linear-gradient(180deg,#f3f7ff,#f7f9fd);border-bottom:1px solid #e3ebfa}
+    .cta p{color:var(--muted);max-width:720px;margin:0 auto 22px;font-size:18px}
+    .feedback{margin-top:10px;min-height:20px;color:var(--primary);font-weight:500}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(10,18,34,.5);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+    .modal-backdrop.show{display:flex}
+    .modal{width:min(520px,100%);background:#fff;border-radius:16px;padding:26px;color:#14213d;box-shadow:0 24px 70px rgba(10,18,34,.25)}
+    .modal h3{font-size:30px;line-height:1.1;margin-bottom:8px;font-family:"Instrument Serif",Georgia,serif}
+    .modal p{color:#55607a;margin-bottom:16px}
+    .modal button{border:0;border-radius:999px;background:#1b1f2c;color:#fff;height:44px;padding:0 18px;font-weight:700;cursor:pointer}
+    footer{padding:26px 0 34px;background:#fff}.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;color:#677390;font-size:14px}
+    .footer-brand{font-weight:700;color:#24324f;font-size:17px}.footer-links{display:flex;gap:16px;flex-wrap:wrap}.footer-links a{color:#516081;text-decoration:none}.footer-links a:hover{text-decoration:underline}
+    @media (max-width:920px){.topbar-inner{height:auto;padding:12px 0;align-items:flex-start;flex-direction:column}.signup{flex-direction:column;border-radius:16px}.signup input,.signup button{width:100%}.flow-step,.two-cols{grid-template-columns:1fr}.flow-step.reverse .flow-media,.flow-step.reverse .flow-copy{order:initial}section,.cta{padding:58px 0}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">Contris</a>
+      <nav class="top-links">
+        <a href="#probleme">Probleme</a>
+        <a href="#top">Demo</a>
+        <a href="#early">Early Adopter</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta">Inscriere</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="hero" id="top">
+    <div class="container">
+      <h1>Acces prioritar la Contris</h1>
+      <p>Control total asupra contractelor tale. Fara Excel, fara termene ratate. Intra pe lista de asteptare si fii printre primele firme care testeaza produsul.</p>
+      <form class="signup js-signup-form" data-source="hero">
+        <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+        <button type="submit">Intra pe lista</button>
+      </form>
+      <p class="hero-offer">50% reducere pe viata pentru primii inscrisi</p>
+      <div class="social-proof">
+        <div class="avatars">
+          <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=70" alt="">
+          <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=70" alt="">
+          <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=70" alt="">
+        </div>
+        <span>Alatura-te celor +20 de persoane de pe lista de asteptare</span>
+      </div>
+      <div class="hero-media">
+        <video class="hero-video js-demo-video" controls autoplay muted loop playsinline preload="auto" poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Browserul tau nu suporta elementul video.
+        </video>
+      </div>
+    </div>
+  </header>
+
+  <section id="probleme"><div class="container">
+    <h2>Cum functioneaza, in 3 pasi</h2>
+    <p class="lead">Structura de mai jos urmeaza un flux clar de la incarcare pana la decizie, cu zone dedicate pentru imaginile tale de produs.</p>
+    <div class="flow">
+      <article class="flow-step">
+        <div class="flow-media"><img src="assets/step-1.jpg" alt="Pasul 1"></div>
+        <div class="flow-copy">
+          <div class="step-no">1</div>
+          <h3>Incarci contractul, noi facem restul.</h3>
+          <p>Uita de introducerea manuala a datelor. Tehnologia noastra extrage automat partenerii, sumele si datele de expirare, transformand PDF-urile scanate intr-un tabel inteligent.</p>
+          <div class="flow-list">
+            <span>Import rapid (Bulk upload)</span>
+            <span>Sortare automata pe categorii</span>
+            <span>OCR de inalta precizie pentru scanari</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="flow-step reverse">
+        <div class="flow-media"><img src="assets/step-2.jpg" alt="Pasul 2"></div>
+        <div class="flow-copy">
+          <div class="step-no">2</div>
+          <h3>Intreaba-ti asistentul, nu rasfoi pagini.</h3>
+          <p>AI-ul identifica instant capcanele juridice si iti raspunde la orice intrebare despre clauzele tale. Primesti un rezumat clar al riscurilor inainte ca acestea sa devina probleme.</p>
+          <div class="flow-list">
+            <span>Detectare automata a riscurilor</span>
+            <span>Asistent conversational (Chat AI)</span>
+            <span>Identificare clauze de reinnoire mascata</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="flow-step">
+        <div class="flow-media"><img src="assets/step-3.jpg" alt="Pasul 3"></div>
+        <div class="flow-copy">
+          <div class="step-no">3</div>
+          <h3>Zero termene ratate. Automat.</h3>
+          <p>Contris te pazeste 24/7. Primesti alerte inteligente prin e-mail si SMS cu mult inainte de expirarea unui contract sau a unei ferestre de reziliere.</p>
+          <div class="flow-list">
+            <span>Notificari configurabile (90/30/7 zile)</span>
+            <span>Dashboard de monitorizare expirari</span>
+            <span>Urmarire obligatii si milestones</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div></section>
+
+  <section id="early"><div class="container">
+    <h2>Program Early Adopter</h2>
+    <p class="lead">Cautam primele 20 de firme din Romania (clinici si transporturi) care vor sa testeze produsul si sa contribuie la forma finala.</p>
+    <div class="two-cols">
+      <div><h4>Ce primesti</h4><ul><li>Acces timpuriu inainte de lansare</li><li>Reducere de 50% pe viata</li><li>Suport direct pentru onboarding</li><li>Posibilitatea de a influenta roadmap-ul</li></ul></div>
+      <div><h4>Ce cautam</h4><ul><li>Companii cu volum constant de contracte</li><li>Echipe care vor risc juridic mai mic</li><li>Business-uri ce vor procese clare</li><li>Disponibilitate pentru feedback</li></ul></div>
+    </div>
+  </div></section>
+
+  <section id="faq"><div class="container">
+    <h2>Intrebari frecvente</h2>
+    <p class="lead">Cateva raspunsuri rapide inainte sa te inscrii in programul Early Adopter.</p>
+    <div class="faq">
+      <details>
+        <summary>Cat costa Contris?</summary>
+        <p>Momentan suntem in faza de Early Access, iar utilizarea platformei este gratuita pentru companiile selectate in programul Beta. La lansarea oficiala, cei inscrisi acum vor beneficia de o reducere de 50% pe viata la toate abonamentele noastre.</p>
+      </details>
+      <details>
+        <summary>Datele mele sunt in siguranta?</summary>
+        <p>Absolut. Securitatea este prioritatea noastra. Toate documentele sunt criptate si stocate pe servere sigure (Cloud). In plus, oferim un Audit Trail complet, astfel incat sa stii in orice secunda cine a accesat sau a modificat un document.</p>
+      </details>
+      <details>
+        <summary>Cat timp dureaza sa invat sa folosesc platforma?</summary>
+        <p>Mai putin de 5 minute. Am creat Contris pentru a fi cat mai intuitiv. Nu ai nevoie de training special: doar incarci contractul, iar asistentul nostru te ghideaza prin restul procesului.</p>
+      </details>
+      <details>
+        <summary>Ce tipuri de contracte poate analiza AI-ul?</summary>
+        <p>Contris recunoaste majoritatea tipurilor de contracte comerciale (prestari servicii, leasing, chirie, furnizori, munca). Tehnologia noastra OCR permite procesarea atat a fisierelor PDF digitale, cat si a celor scanate sau fotografiate.</p>
+      </details>
+      <details>
+        <summary>Cum ma ajuta mai exact sa nu pierd bani?</summary>
+        <p>Platforma monitorizeaza automat datele de expirare si clauzele de reinnoire automata. Vei primi alerte prin e-mail si SMS cu suficient timp inainte (ex: 30/60 de zile), astfel incat sa poti renegocia sau rezilia contractele la timp, evitand costurile nedorite.</p>
+      </details>
+    </div>
+  </div></section>
+
+  <section class="cta" id="cta"><div class="container">
+    <h2>Vreau acces prioritar</h2>
+    <p>Inscrie-te acum, iar echipa Contris te va contacta cu detaliile de onboarding pentru programul Early Adopter.</p>
+    <form class="signup js-signup-form" data-source="cta">
+      <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+      <button type="submit">Vreau acces prioritar</button>
+    </form>
+    <div class="feedback" id="feedback"></div>
+  </div></section>
+
+  <footer><div class="container footer-inner">
+    <div class="footer-brand">Contris</div>
+    <nav class="footer-links"><a href="termeni.html">Termeni</a><a href="confidentialitate.html">Confidentialitate</a><a href="gdpr.html">GDPR</a><a href="contact.html">Contact</a></nav>
+    <div>© 2026 Contris. Toate drepturile rezervate.</div>
+  </div></footer>
+
+  <div class="modal-backdrop" id="successModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Multumim pentru inscriere!</h3>
+      <p>Te-ai inscris cu succes pe lista de asteptare. Te vom contacta imediat ce lansam Contris.</p>
+      <button type="button" id="closeModalBtn">Perfect, multumesc</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://shlnshvjwulszydaqlmh.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNobG5zaHZqd3Vsc3p5ZGFxbG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzczMzUsImV4cCI6MjA5MTIxMzMzNX0.lATJ-hKw8twOn0Ueo2EvFwEBeglRNzhQV8C133JthcY";
+    const feedbackEl = document.getElementById("feedback");
+    const successModal = document.getElementById("successModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const forms = document.querySelectorAll(".js-signup-form");
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const setFeedback = (m,t) => { feedbackEl.textContent = m; feedbackEl.style.color = t==="error" ? "#b65e00" : "#2b57e8"; };
+    const demoVideos = document.querySelectorAll(".js-demo-video");
+
+    // Browserele permit de obicei autoplay doar muted.
+    // Incercam volum mic (10%) si unmute automat unde politica browserului permite.
+    demoVideos.forEach((video) => {
+      video.volume = 0.1;
+      const tryPlayWithLowAudio = async () => {
+        try {
+          video.muted = false;
+          await video.play();
+        } catch (err) {
+          video.muted = true;
+          try { await video.play(); } catch (_) {}
+        }
+      };
+      if (video.readyState >= 1) tryPlayWithLowAudio();
+      else video.addEventListener("loadedmetadata", tryPlayWithLowAudio, { once: true });
+    });
+    const openModal = () => successModal.classList.add("show");
+    const closeModal = () => successModal.classList.remove("show");
+    closeModalBtn.addEventListener("click", closeModal);
+    successModal.addEventListener("click", (e) => { if (e.target === successModal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+    forms.forEach((form) => form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[name="email"]');
+      const email = input.value.trim();
+      const source = form.dataset.source || "landing";
+      if (!isValidEmail(email)) return setFeedback("Te rog sa introduci o adresa de e-mail valida.","error");
+      try {
+        const { error } = await supabaseClient.from("waitlist_emails").insert([{ email, source }]);
+        if (error) throw error;
+        input.value = "";
+        setFeedback("Perfect. Te-am adaugat pe lista de asteptare.");
+        openModal();
+      } catch (err) {
+        console.error(err);
+        setFeedback("Nu am putut salva e-mailul acum. Incearca din nou.","error");
+      }
+    }));
+  </script>
+</body>
+</html>

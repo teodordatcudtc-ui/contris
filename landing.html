@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contris - Acces prioritar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f9fd;--text:#10172a;--muted:#54607c;--line:#dbe3f4;--primary:#3558f3;--hero1:#0f60bf;--hero2:#0a4a93}
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:"Geist",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    .container{width:min(1120px,92vw);margin:0 auto}
+    .hero{color:#f4f8ff;background:radial-gradient(1200px 500px at 50% 20%,rgba(172,223,255,.28),transparent 60%),linear-gradient(180deg,var(--hero1),var(--hero2) 70%,#0a4a93);padding:70px 0 80px;text-align:center}
+    .hero h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(44px,6vw,86px);font-weight:400;line-height:1;letter-spacing:-.02em;margin-bottom:14px}
+    .hero p{max-width:760px;margin:0 auto 24px;color:#d9e7ff;font-size:clamp(16px,2vw,22px)}
+    .signup{display:flex;gap:10px;align-items:center;width:min(640px,100%);margin:0 auto;padding:8px;border-radius:999px;background:#fff;box-shadow:0 20px 45px rgba(8,31,86,.2)}
+    .signup input{flex:1;border:0;outline:none;font-size:16px;padding:0 16px;height:48px;color:#1a2438;background:transparent}
+    .signup button{border:0;border-radius:999px;background:#1b1f2c;color:#fff;font-weight:700;font-size:15px;height:48px;padding:0 24px;cursor:pointer}
+    .social-proof{margin-top:20px;display:inline-flex;align-items:center;gap:12px;color:#e8f0ff;font-weight:500}
+    .avatars{display:flex}.avatar{width:30px;height:30px;border-radius:50%;margin-left:-7px;border:2px solid rgba(255,255,255,.8);object-fit:cover;background:#cddcff}.avatar:first-child{margin-left:0}
+    .hero-media{margin-top:36px}.hero-media img{width:100%;border-radius:18px;border:1px solid rgba(234,242,255,.6);display:block;box-shadow:0 20px 60px rgba(6,27,71,.25)}
+    section{padding:74px 0;border-bottom:1px solid #e8eef9}
+    h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.01em;margin-bottom:12px}
+    .lead{color:var(--muted);font-size:18px;max-width:840px;margin-bottom:30px}
+    .cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .item h3{font-size:21px;margin-bottom:8px;letter-spacing:-.01em}.item p{color:var(--muted)}.icon{font-size:26px;margin-bottom:8px;color:var(--primary)}
+    .demo-video{margin-top:18px;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:#0a0c12}.demo-video video{width:100%;display:block;max-height:640px}
+    .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:6px}.two-cols h4{font-size:23px;margin-bottom:8px;letter-spacing:-.01em}.two-cols ul{color:var(--muted);padding-left:18px}.two-cols li{margin-bottom:8px}
+    .cta{padding:72px 0;text-align:center;background:linear-gradient(180deg,#f3f7ff,#f7f9fd);border-bottom:1px solid #e3ebfa}
+    .cta p{color:var(--muted);max-width:720px;margin:0 auto 22px;font-size:18px}
+    .feedback{margin-top:10px;min-height:20px;color:var(--primary);font-weight:500}
+    footer{padding:26px 0 34px;background:#fff}.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;color:#677390;font-size:14px}
+    .footer-brand{font-weight:700;color:#24324f;font-size:17px}.footer-links{display:flex;gap:16px;flex-wrap:wrap}.footer-links a{color:#516081;text-decoration:none}.footer-links a:hover{text-decoration:underline}
+    @media (max-width:920px){.signup{flex-direction:column;border-radius:16px}.signup input,.signup button{width:100%}.cols-3,.two-cols{grid-template-columns:1fr}section,.cta{padding:58px 0}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Acces prioritar la Contris</h1>
+      <p>Control total asupra contractelor tale. Fara Excel, fara termene ratate. Intra pe lista de asteptare si fii printre primele firme care testeaza produsul.</p>
+      <form class="signup js-signup-form" data-source="hero">
+        <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+        <button type="submit">Intra pe lista</button>
+      </form>
+      <div class="social-proof">
+        <div class="avatars">
+          <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=70" alt="avatar 1">
+          <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=70" alt="avatar 2">
+          <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=70" alt="avatar 3">
+        </div>
+        <span>Alatura-te celor +20 de persoane de pe lista de asteptare</span>
+      </div>
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" alt="Previzualizare produs Contris">
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>Probleme reale, rezolvare simpla</h2>
+      <p class="lead">Contris te ajuta sa gestionezi contractele intr-un flux clar: gasesti rapid documentele, vezi riscurile juridice si primesti alerte inainte de termenele critice.</p>
+      <div class="cols-3">
+        <article class="item"><div class="icon">✉</div><h3>E-mailuri pierdute</h3><p>Gasesti instant varianta corecta a contractului, fara cautari in inbox sau foldere haotice.</p></article>
+        <article class="item"><div class="icon">⏰</div><h3>Expirari uitate</h3><p>Primesti notificari inainte de ferestrele de reinnoire, renegociere sau reziliere.</p></article>
+        <article class="item"><div class="icon">⚖</div><h3>Clauze ascunse</h3><p>Analizezi contractele cu AI si identifici punctele sensibile fara sa citesti manual zeci de pagini.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Vezi demo-ul Contris</h2>
+      <p class="lead">Vezi in cateva secunde cum functioneaza Contris in practica.</p>
+      <div class="demo-video">
+        <video controls preload="metadata" poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Browserul tau nu suporta elementul video.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Program Early Adopter</h2>
+      <p class="lead">Cautam primele 20 de firme din Romania (clinici si transporturi) care vor sa testeze produsul si sa contribuie la forma finala.</p>
+      <div class="two-cols">
+        <div><h4>Ce primesti</h4><ul><li>Acces timpuriu inainte de lansare</li><li>Reducere de 50% pe viata</li><li>Suport direct pentru onboarding</li><li>Posibilitatea de a influenta roadmap-ul</li></ul></div>
+        <div><h4>Ce cautam</h4><ul><li>Companii cu volum constant de contracte</li><li>Echipe care vor risc juridic mai mic</li><li>Business-uri ce vor procese clare</li><li>Disponibilitate pentru feedback</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="container">
+      <h2>Vreau acces prioritar</h2>
+      <p>Inscrie-te acum, iar echipa Contris te va contacta cu detaliile de onboarding pentru programul Early Adopter.</p>
+      <form class="signup js-signup-form" data-source="cta">
+        <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+        <button type="submit">Vreau acces prioritar</button>
+      </form>
+      <div class="feedback" id="feedback"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">Contris</div>
+      <nav class="footer-links">
+        <a href="termeni.html">Termeni</a>
+        <a href="confidentialitate.html">Confidentialitate</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div>© 2026 Contris. Toate drepturile rezervate.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://shlnshvjwulszydaqlmh.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNobG5zaHZqd3Vsc3p5ZGFxbG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzczMzUsImV4cCI6MjA5MTIxMzMzNX0.lATJ-hKw8twOn0Ueo2EvFwEBeglRNzhQV8C133JthcY";
+    const SUPABASE_TABLE = "waitlist_emails";
+    const feedbackEl = document.getElementById("feedback");
+    const forms = document.querySelectorAll(".js-signup-form");
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const setFeedback = (message, type) => { feedbackEl.textContent = message; feedbackEl.style.color = type === "error" ? "#b65e00" : "#2b57e8"; };
+
+    forms.forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = form.querySelector('input[name="email"]');
+        const email = input.value.trim();
+        const source = form.dataset.source || "landing";
+        if (!isValidEmail(email)) { setFeedback("Te rog sa introduci o adresa de e-mail valida.", "error"); return; }
+        try {
+          const { error } = await supabaseClient.from(SUPABASE_TABLE).insert([{ email, source }]);
+          if (error) throw error;
+          setFeedback("Perfect. Te-am adaugat pe lista de asteptare.");
+          input.value = "";
+        } catch (error) {
+          setFeedback("Nu am putut salva e-mailul acum. Incearca din nou.", "error");
+          console.error(error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contris - Acces prioritar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f9fd;
+      --text: #10172a;
+      --muted: #54607c;
+      --line: #dbe3f4;
+      --primary: #3558f3;
+      --primary-dark: #2447df;
+      --hero-1: #0f60bf;
+      --hero-2: #0a4a93;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Geist", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .hero {
+      color: #f4f8ff;
+      background:
+        radial-gradient(1200px 500px at 50% 20%, rgba(172, 223, 255, 0.28), transparent 60%),
+        linear-gradient(180deg, var(--hero-1), var(--hero-2) 70%, #0a4a93);
+      padding: 70px 0 80px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(44px, 6vw, 86px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      color: #d9e7ff;
+      font-size: clamp(16px, 2vw, 22px);
+    }
+
+    .signup {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: min(640px, 100%);
+      margin: 0 auto;
+      padding: 8px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 20px 45px rgba(8, 31, 86, 0.2);
+    }
+
+    .signup input {
+      flex: 1;
+      border: 0;
+      outline: none;
+      font-size: 16px;
+      padding: 0 16px;
+      height: 48px;
+      color: #1a2438;
+      background: transparent;
+    }
+
+    .signup button {
+      border: 0;
+      border-radius: 999px;
+      background: #1b1f2c;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      height: 48px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .signup button:hover { background: #0f131f; transform: translateY(-1px); }
+
+    .social-proof {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #e8f0ff;
+      font-weight: 500;
+    }
+
+    .avatars { display: flex; }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-left: -7px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      background: #cddcff;
+    }
+    .avatar:first-child { margin-left: 0; }
+
+    .hero-media {
+      margin-top: 36px;
+    }
+
+    .hero-media img {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(234, 242, 255, 0.6);
+      display: block;
+      box-shadow: 0 20px 60px rgba(6, 27, 71, 0.25);
+    }
+
+    section {
+      padding: 74px 0;
+      border-bottom: 1px solid #e8eef9;
+    }
+
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 840px;
+      margin-bottom: 30px;
+    }
+
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .item h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .item p { color: var(--muted); }
+
+    .icon {
+      font-size: 26px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .demo-video {
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #0a0c12;
+    }
+
+    .demo-video video {
+      width: 100%;
+      display: block;
+      max-height: 640px;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 6px;
+    }
+
+    .two-cols h4 {
+      font-size: 23px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .two-cols ul {
+      color: var(--muted);
+      padding-left: 18px;
+    }
+    .two-cols li { margin-bottom: 8px; }
+
+    .cta {
+      padding: 72px 0;
+      text-align: center;
+      background: linear-gradient(180deg, #f3f7ff, #f7f9fd);
+      border-bottom: 1px solid #e3ebfa;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 22px;
+      font-size: 18px;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      min-height: 20px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    footer {
+      padding: 26px 0 34px;
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: #677390;
+      font-size: 14px;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      color: #24324f;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #516081;
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: #24324f; text-decoration: underline; }
+
+    @media (max-width: 920px) {
+      .signup { flex-direction: column; border-radius: 16px; }
+      .signup input, .signup button { width: 100%; }
+      .cols-3, .two-cols { grid-template-columns: 1fr; }
+      section, .cta { padding: 58px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Acces prioritar la Contris</h1>
+      <p>Control total asupra contractelor tale. Fara Excel, fara termene ratate. Intra pe lista de asteptare si fii printre primele firme care testeaza produsul.</p>
+
+      <form class="signup js-signup-form" data-source="hero">
+        <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+        <button type="submit">Intra pe lista</button>
+      </form>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=70" alt="avatar 1">
+          <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=70" alt="avatar 2">
+          <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=70" alt="avatar 3">
+        </div>
+        <span>Alatura-te celor +20 de persoane de pe lista de asteptare</span>
+      </div>
+
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" alt="Previzualizare produs Contris">
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>Probleme reale, rezolvare simpla</h2>
+      <p class="lead">Contris te ajuta sa gestionezi contractele intr-un flux clar: gasesti rapid documentele, vezi riscurile juridice si primesti alerte inainte de termenele critice.</p>
+      <div class="cols-3">
+        <article class="item">
+          <div class="icon">✉</div>
+          <h3>E-mailuri pierdute</h3>
+          <p>Gasesti instant varianta corecta a contractului, fara cautari in inbox sau foldere haotice.</p>
+        </article>
+        <article class="item">
+          <div class="icon">⏰</div>
+          <h3>Expirari uitate</h3>
+          <p>Primesti notificari inainte de ferestrele de reinnoire, renegociere sau reziliere.</p>
+        </article>
+        <article class="item">
+          <div class="icon">⚖</div>
+          <h3>Clauze ascunse</h3>
+          <p>Analizezi contractele cu AI si identifici punctele sensibile fara sa citesti manual zeci de pagini.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Vezi demo-ul Contris</h2>
+      <p class="lead">Vezi in cateva secunde cum functioneaza Contris in practica.</p>
+      <div class="demo-video">
+        <video controls preload="metadata" poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Browserul tau nu suporta elementul video.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Program Early Adopter</h2>
+      <p class="lead">Cautam primele 20 de firme din Romania (clinici si transporturi) care vor sa testeze produsul si sa contribuie la forma finala.</p>
+      <div class="two-cols">
+        <div>
+          <h4>Ce primesti</h4>
+          <ul>
+            <li>Acces timpuriu la produs inainte de lansare</li>
+            <li>Reducere de 50% pe viata la lansare</li>
+            <li>Suport direct pentru implementare initiala</li>
+            <li>Posibilitatea de a influenta roadmap-ul</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Ce cautam</h4>
+          <ul>
+            <li>Companii cu volum constant de contracte</li>
+            <li>Echipe care vor sa reduca riscurile operationale</li>
+            <li>Business-uri ce vor procese juridice mai clare</li>
+            <li>Disponibilitate pentru feedback in primele luni</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="container">
+      <h2>Vreau acces prioritar</h2>
+      <p>Inscrie-te acum, iar echipa Contris te va contacta cu detaliile de onboarding pentru programul Early Adopter.</p>
+      <form class="signup js-signup-form" data-source="cta">
+        <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+        <button type="submit">Vreau acces prioritar</button>
+      </form>
+      <div class="feedback" id="feedback"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">Contris</div>
+      <nav class="footer-links">
+        <a href="termeni.html">Termeni</a>
+        <a href="confidentialitate.html">Confidentialitate</a>
+        <a href="gdpr.html">GDPR</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div>© 2026 Contris. Toate drepturile rezervate.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://shlnshvjwulszydaqlmh.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNobG5zaHZqd3Vsc3p5ZGFxbG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzczMzUsImV4cCI6MjA5MTIxMzMzNX0.lATJ-hKw8twOn0Ueo2EvFwEBeglRNzhQV8C133JthcY";
+    const SUPABASE_TABLE = "waitlist_emails";
+
+    const feedbackEl = document.getElementById("feedback");
+    const forms = document.querySelectorAll(".js-signup-form");
+    const supabaseReady = SUPABASE_URL.startsWith("http") && SUPABASE_ANON_KEY;
+    const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+    function setFeedback(message, type) {
+      feedbackEl.textContent = message;
+      feedbackEl.style.color = type === "error" ? "#b65e00" : "#2b57e8";
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    async function saveEmailToSupabase(email, source) {
+      const { error } = await supabaseClient.from(SUPABASE_TABLE).insert([{ email, source }]);
+      if (error) throw error;
+    }
+
+    forms.forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = form.querySelector('input[name="email"]');
+        const email = input.value.trim();
+        const source = form.dataset.source || "landing";
+
+        if (!isValidEmail(email)) {
+          setFeedback("Te rog sa introduci o adresa de e-mail valida.", "error");
+          return;
+        }
+
+        if (!supabaseReady) {
+          setFeedback("Configurarea Supabase lipseste.", "error");
+          return;
+        }
+
+        try {
+          await saveEmailToSupabase(email, source);
+          setFeedback("Perfect. Te-am adaugat pe lista de asteptare.");
+          input.value = "";
+        } catch (error) {
+          setFeedback("Nu am putut salva e-mailul acum. Incearca din nou.", "error");
+          console.error(error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contris - Acces prioritar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #f4f7ff;
+      --muted: #d5def1;
+      --panel: #ffffff;
+      --line: #dde5f5;
+      --btn: #1f1f23;
+      --btn-hover: #0f1115;
+      --accent: #3d5cff;
+      --dark: #11172a;
+      --dark-soft: #506083;
+      --bg-light: #f5f8fd;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Geist", system-ui, sans-serif;
+      color: var(--text);
+      background: #0b5bb8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(1200px 600px at 50% 20%, rgba(138, 202, 255, 0.42), rgba(8, 69, 145, 0.35) 45%, rgba(6, 48, 103, 0.9) 100%),
+        linear-gradient(180deg, #1167cc 0%, #0c4a97 65%, #f4f7fb 100%);
+    }
+
+    .bg::before,
+    .bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .bg::before {
+      background:
+        radial-gradient(circle at 12% 20%, rgba(205, 255, 229, 0.26), transparent 32%),
+        radial-gradient(circle at 85% 28%, rgba(156, 235, 174, 0.2), transparent 30%),
+        radial-gradient(circle at 50% 68%, rgba(255, 255, 255, 0.36), transparent 34%);
+      filter: blur(4px);
+    }
+
+    .bg::after {
+      background: linear-gradient(to bottom, rgba(7, 48, 103, 0.08), rgba(255, 255, 255, 0.12));
+    }
+
+    .container {
+      width: min(1080px, 92vw);
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding-top: 92px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(44px, 6vw, 84px);
+      font-weight: 400;
+      line-height: 1;
+      text-shadow: 0 8px 30px rgba(6, 27, 74, 0.22);
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(15px, 1.7vw, 21px);
+      max-width: 760px;
+      margin: 0 auto 26px;
+    }
+
+    .signup {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: min(640px, 100%);
+      margin: 0 auto;
+      padding: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 15px 40px rgba(8, 30, 86, 0.16);
+    }
+
+    .signup input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: #1c2432;
+      font-size: 16px;
+      padding: 0 18px;
+      height: 48px;
+    }
+
+    .signup button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--btn);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 0 26px;
+      height: 48px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .signup button:hover {
+      background: var(--btn-hover);
+      transform: translateY(-1px);
+    }
+
+    .proof {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #eaf1ff;
+      font-weight: 500;
+    }
+
+    .avatars { display: flex; align-items: center; }
+    .av {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-left: -8px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      object-fit: cover;
+      background: #c9d9ff;
+      display: block;
+    }
+    .av:first-child { margin-left: 0; }
+
+    .mockup-wrap {
+      margin-top: 44px;
+      padding-bottom: 90px;
+    }
+
+    .mockup {
+      border-radius: 28px;
+      border: 1px solid rgba(221, 229, 245, 0.85);
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 25px 70px rgba(13, 45, 105, 0.22);
+    }
+
+    .mockup img { width: 100%; display: block; }
+
+    .content {
+      background: var(--bg-light);
+      color: var(--dark);
+      border-top: 1px solid #e7edf8;
+      padding: 74px 0 90px;
+    }
+
+    .section-title {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(34px, 4vw, 52px);
+      margin-bottom: 12px;
+      text-align: center;
+      line-height: 1.05;
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 28px;
+      color: #6d7893;
+      font-size: 17px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: var(--dark-soft);
+      font-size: 15px;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: #eef3ff;
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .split .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .split h4 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .split ul {
+      padding-left: 18px;
+      color: var(--dark-soft);
+    }
+
+    .split li { margin-bottom: 8px; }
+
+    .demo-frame {
+      margin-top: 28px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(45, 58, 86, 0.1);
+      background: #0e1426;
+    }
+
+    .demo-frame video {
+      width: 100%;
+      display: block;
+      max-height: 620px;
+      background: #000;
+    }
+
+    .steps {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .step b {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background: #ebf1ff;
+      color: #3054ea;
+      margin-bottom: 10px;
+    }
+
+    .step p { color: var(--dark-soft); }
+
+    .cta {
+      margin-top: 34px;
+      border: 1px solid #c8d5f7;
+      background: linear-gradient(180deg, #eef3ff, #f8faff);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .cta h3 {
+      font-size: 34px;
+      font-family: "Instrument Serif", Georgia, serif;
+      margin-bottom: 8px;
+    }
+
+    .cta p { color: #4f5b7a; }
+
+    .feedback {
+      margin-top: 10px;
+      min-height: 20px;
+      color: #2c68df;
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 34px;
+      background: #10192e;
+      color: #c8d3ec;
+      border-radius: 20px;
+      padding: 26px;
+      border: 1px solid rgba(148, 167, 209, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #c8d3ec;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 74px; }
+      .signup { flex-direction: column; border-radius: 18px; }
+      .signup input, .signup button { width: 100%; }
+      .grid-3, .steps, .split { grid-template-columns: 1fr; }
+      .proof { font-size: 14px; }
+      .cta { padding: 22px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Acces prioritar la Contris</h1>
+        <p>Control total asupra contractelor tale. Fara Excel, fara termene ratate. Intra pe lista de asteptare si testeaza produsul inainte de lansarea oficiala.</p>
+
+        <form class="signup js-signup-form" data-source="hero">
+          <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+          <button type="submit">Intra pe lista</button>
+        </form>
+
+        <div class="proof">
+          <div class="avatars">
+            <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=70" alt="avatar 1">
+            <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=70" alt="avatar 2">
+            <img class="av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=70" alt="avatar 3">
+          </div>
+          <span>Alatura-te celor +20 de persoane de pe lista de asteptare</span>
+        </div>
+
+        <div class="mockup-wrap">
+          <div class="mockup">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" alt="Previzualizare produs Contris">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <h2 class="section-title">De ce ai nevoie de Contris</h2>
+        <p class="section-sub">Construit pentru companii care gestioneaza multe contracte si au nevoie de claritate, viteza si control juridic.</p>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">✉</div>
+            <h3>E-mailuri pierdute</h3>
+            <p>Gasesti instant contractul corect, versiunea corecta si istoricul relevant.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⏰</div>
+            <h3>Expirari uitate</h3>
+            <p>Primesti alerte inainte de ferestrele critice de reinnoire sau reziliere.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚖</div>
+            <h3>Clauze ascunse</h3>
+            <p>Identifici automat riscuri si clauze sensibile cu asistenta AI.</p>
+          </article>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h4>Ce primesti in varianta Early Adopter</h4>
+            <ul>
+              <li>Centralizare contracte intr-un singur loc</li>
+              <li>Asistent conversational pentru intrebari pe documente</li>
+              <li>Alerte e-mail si SMS pentru date critice</li>
+              <li>Discount 50% pe viata la lansare</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h4>Cautam 20 de firme pilot din Romania</h4>
+            <ul>
+              <li>Clinici private</li>
+              <li>Transport si logistica</li>
+              <li>Echipe juridice interne</li>
+              <li>Companii care vor sa influenteze produsul final</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:38px;">Vezi demo-ul Contris</h2>
+        <p class="section-sub">Vezi in cateva secunde cum functioneaza Contris in practica.</p>
+
+        <div class="demo-frame">
+          <video controls preload="metadata" poster="assets/demo-poster.jpg">
+            <source src="assets/demo.mp4" type="video/mp4">
+            Browserul tau nu suporta elementul video.
+          </video>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <b>1</b>
+            <h3>Incarci contractele</h3>
+            <p>PDF, DOCX sau scan-uri intr-un singur flux simplu.</p>
+          </article>
+          <article class="step">
+            <b>2</b>
+            <h3>AI extrage informatia</h3>
+            <p>Clauze, date cheie, termene si riscuri detectate automat.</p>
+          </article>
+          <article class="step">
+            <b>3</b>
+            <h3>Primeste alerte proactive</h3>
+            <p>Notificari inainte de orice termen important.</p>
+          </article>
+        </div>
+
+        <div class="cta" id="cta">
+          <h3>Vreau acces prioritar</h3>
+          <p>Inscrie-te acum si blocheaza reducerea de 50% pe viata la lansare.</p>
+          <form class="signup js-signup-form" data-source="cta" style="margin-top:16px;">
+            <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
+            <button type="submit">Vreau acces prioritar</button>
+          </form>
+          <div class="feedback" id="feedback"></div>
+        </div>
+
+        <footer>
+          <div class="footer-brand">Contris</div>
+          <div class="footer-links">
+            <a href="termeni.html">Termeni</a>
+            <a href="confidentialitate.html">Confidentialitate</a>
+            <a href="gdpr.html">GDPR</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>© 2026 Contris. Toate drepturile rezervate.</div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Configureaza valorile cu proiectul tau Supabase.
+    const SUPABASE_URL = "https://shlnshvjwulszydaqlmh.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNobG5zaHZqd3Vsc3p5ZGFxbG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzczMzUsImV4cCI6MjA5MTIxMzMzNX0.lATJ-hKw8twOn0Ueo2EvFwEBeglRNzhQV8C133JthcY";
+    const SUPABASE_TABLE = "waitlist_emails";
+
+    const feedbackEl = document.getElementById("feedback");
+    const forms = document.querySelectorAll(".js-signup-form");
+    const supabaseReady =
+      SUPABASE_URL.startsWith("http") &&
+      SUPABASE_ANON_KEY &&
+      !SUPABASE_ANON_KEY.includes("PASTE_YOUR");
+
+    const supabaseClient = supabaseReady
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
+
+    function setFeedback(message, type) {
+      if (!feedbackEl) return;
+      feedbackEl.textContent = message;
+      if (type === "error") feedbackEl.style.color = "#cc6d00";
+      else feedbackEl.style.color = "#2c68df";
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    async function saveEmailToSupabase(email, source) {
+      if (!supabaseClient) {
+        throw new Error("Supabase neconfigurat");
+      }
+
+      const { error } = await supabaseClient
+        .from(SUPABASE_TABLE)
+        .insert([{ email, source }]);
+
+      if (error) throw error;
+    }
+
+    forms.forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = form.querySelector('input[name="email"]');
+        const email = input.value.trim();
+        const source = form.dataset.source || "landing";
+
+        if (!isValidEmail(email)) {
+          setFeedback("Te rog sa introduci o adresa de e-mail valida.", "error");
+          return;
+        }
+
+        if (!supabaseReady) {
+          setFeedback("Seteaza intai SUPABASE_URL si SUPABASE_ANON_KEY in fisierul landing.html.", "error");
+          return;
+        }
+
+        try {
+          await saveEmailToSupabase(email, source);
+          setFeedback("Perfect. Te-am adaugat pe lista de asteptare.");
+          input.value = "";
+        } catch (error) {
+          setFeedback("Nu am putut salva e-mailul acum. Incearca din nou.", "error");
+          console.error(error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
