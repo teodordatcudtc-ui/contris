@@ -17,6 +17,7 @@
     .top-links{display:flex;gap:14px;flex-wrap:wrap}
     .top-links a{font-size:14px;color:#5a6785;text-decoration:none}
     .top-links a:hover{color:#24324f}
+    .menu-toggle{display:none;border:1px solid #dbe3f4;background:#fff;color:#24324f;border-radius:10px;padding:8px 10px;font-size:18px;line-height:1;cursor:pointer}
     .hero{color:#f4f8ff;background:linear-gradient(rgba(8,34,78,.5),rgba(8,34,78,.58)),url("assets/hero-bg.jpg") center/cover no-repeat,radial-gradient(1200px 500px at 50% 20%,rgba(172,223,255,.28),transparent 60%),linear-gradient(180deg,var(--hero1),var(--hero2) 70%,#0a4a93);padding:70px 0 80px;text-align:center}
     .hero h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(44px,6vw,86px);font-weight:400;line-height:1;letter-spacing:-.02em;margin-bottom:14px}
     .hero p{max-width:760px;margin:0 auto 24px;color:#d9e7ff;font-size:clamp(16px,2vw,22px)}
@@ -62,14 +63,33 @@
     .modal button{border:0;border-radius:999px;background:#1b1f2c;color:#fff;height:44px;padding:0 18px;font-weight:700;cursor:pointer}
     footer{padding:26px 0 34px;background:#fff}.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;color:#677390;font-size:14px}
     .footer-brand{font-weight:700;color:#24324f;font-size:17px}.footer-links{display:flex;gap:16px;flex-wrap:wrap}.footer-links a{color:#516081;text-decoration:none}.footer-links a:hover{text-decoration:underline}
-    @media (max-width:920px){.topbar-inner{height:auto;padding:12px 0;align-items:flex-start;flex-direction:column}.signup{flex-direction:column;border-radius:16px}.signup input,.signup button{width:100%}.flow-step,.two-cols{grid-template-columns:1fr}.flow-step.reverse .flow-media,.flow-step.reverse .flow-copy{order:initial}section,.cta{padding:58px 0}}
+    @media (max-width:920px){
+      .topbar-inner{height:auto;padding:12px 0;align-items:center;flex-direction:row}
+      .menu-toggle{display:inline-flex}
+      .top-links{display:none;position:absolute;top:62px;left:0;right:0;background:rgba(247,249,253,.98);backdrop-filter:blur(8px);border-bottom:1px solid #e5ebf8;padding:12px 4vw;flex-direction:column;gap:10px}
+      .top-links.open{display:flex}
+      .top-links a{font-size:15px}
+      .hero p{max-width:520px;font-size:16px;margin-bottom:18px}
+      .hero .signup{flex-direction:row;border-radius:999px;padding:6px}
+      .hero .signup input{height:44px;font-size:14px;padding:0 12px}
+      .hero .signup button{width:44px;height:44px;padding:0;border-radius:50%;font-size:0;display:grid;place-items:center}
+      .hero .signup button::before{content:"➜";font-size:18px}
+      .social-proof{margin-top:10px;font-size:13px;justify-content:center}
+      .avatar{width:24px;height:24px;margin-left:-6px}
+      .signup{flex-direction:column;border-radius:16px}
+      .signup input,.signup button{width:100%}
+      .flow-step,.two-cols{grid-template-columns:1fr}
+      .flow-step.reverse .flow-media,.flow-step.reverse .flow-copy{order:initial}
+      section,.cta{padding:58px 0}
+    }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#top">Contris</a>
-      <nav class="top-links">
+      <button class="menu-toggle" id="menuToggle" aria-label="Deschide meniul" aria-expanded="false">☰</button>
+      <nav class="top-links" id="mobileMenu">
         <a href="#probleme">Probleme</a>
         <a href="#top">Demo</a>
         <a href="#early">Early Adopter</a>
@@ -82,8 +102,8 @@
   <header class="hero" id="top">
     <div class="container">
       <h1>Acces prioritar la Contris</h1>
-      <p>Control total asupra contractelor tale. Fara Excel, fara termene ratate. Intra pe lista de asteptare si fii printre primele firme care testeaza produsul.</p>
-      <form class="signup js-signup-form" data-source="hero">
+      <p>Controlezi contractele rapid, fara Excel si fara termene ratate.</p>
+      <form class="signup js-signup-form hero-signup" data-source="hero">
         <input type="email" name="email" placeholder="Adresa ta de e-mail" required>
         <button type="submit">Intra pe lista</button>
       </form>
@@ -247,6 +267,17 @@
     closeModalBtn.addEventListener("click", closeModal);
     successModal.addEventListener("click", (e) => { if (e.target === successModal) closeModal(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }));
+
     forms.forEach((form) => form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const input = form.querySelector('input[name="email"]');
